@@ -1,0 +1,1030 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{Ajtai1996}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b7e2ae2ab12b5713e81730f00bb755f2}{%
+           family={Ajtai},
+           familyi={A\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {ACM Press}%
+      }
+      \strng{namehash}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \strng{fullhash}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \strng{fullhashraw}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \strng{bibnamehash}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \strng{authorbibnamehash}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \strng{authornamehash}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \strng{authorfullhash}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \strng{authorfullhashraw}{b7e2ae2ab12b5713e81730f00bb755f2}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the twenty-eighth annual ACM symposium on Theory of computing - STOC ’96}
+      \field{series}{STOC ’96}
+      \field{title}{Generating hard instances of lattice problems (extended abstract)}
+      \field{year}{1996}
+      \field{pages}{99\bibrangedash 108}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/237814.237838
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/237814.237838
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/237814.237838
+      \endverb
+    \endentry
+    \entry{Banaszczyk1993}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6b899bf0be26fac8fe01670e38e91e38}{%
+           family={Banaszczyk},
+           familyi={B\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{6b899bf0be26fac8fe01670e38e91e38}
+      \strng{fullhash}{6b899bf0be26fac8fe01670e38e91e38}
+      \strng{fullhashraw}{6b899bf0be26fac8fe01670e38e91e38}
+      \strng{bibnamehash}{6b899bf0be26fac8fe01670e38e91e38}
+      \strng{authorbibnamehash}{6b899bf0be26fac8fe01670e38e91e38}
+      \strng{authornamehash}{6b899bf0be26fac8fe01670e38e91e38}
+      \strng{authorfullhash}{6b899bf0be26fac8fe01670e38e91e38}
+      \strng{authorfullhashraw}{6b899bf0be26fac8fe01670e38e91e38}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1432-1807}
+      \field{journaltitle}{Mathematische Annalen}
+      \field{month}{12}
+      \field{number}{1}
+      \field{title}{New bounds in some transference theorems in the geometry of numbers}
+      \field{volume}{296}
+      \field{year}{1993}
+      \field{pages}{625\bibrangedash 635}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/bf01445125
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/BF01445125
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/BF01445125
+      \endverb
+    \endentry
+    \entry{Boudgoust2023}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=110b21d03211d7833688846eb9dc9f32}{%
+           family={Boudgoust},
+           familyi={B\bibinitperiod},
+           given={Katharina},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{110b21d03211d7833688846eb9dc9f32}
+      \strng{fullhash}{110b21d03211d7833688846eb9dc9f32}
+      \strng{fullhashraw}{110b21d03211d7833688846eb9dc9f32}
+      \strng{bibnamehash}{110b21d03211d7833688846eb9dc9f32}
+      \strng{authorbibnamehash}{110b21d03211d7833688846eb9dc9f32}
+      \strng{authornamehash}{110b21d03211d7833688846eb9dc9f32}
+      \strng{authorfullhash}{110b21d03211d7833688846eb9dc9f32}
+      \strng{authorfullhashraw}{110b21d03211d7833688846eb9dc9f32}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Crash-Course lecture notes, Aarhus University}
+      \field{month}{2}
+      \field{note}{Version du 2~février 2023}
+      \field{title}{{Hardness Assumptions in Lattice-Based Cryptography}}
+      \field{year}{2023}
+    \endentry
+    \entry{SP24}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=8420f1b740d312727ce7e835fb95955f}{%
+           family={Cohn},
+           familyi={C\bibinitperiod},
+           given={Henry},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3346decbcd7ad4e49a5a8209a367f863}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Abhinav},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ad603ce20beceb548e2bc801da64ca85}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Stephen\bibnamedelima D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=12bb53f33442bae50249417a331819e2}{%
+           family={Radchenko},
+           familyi={R\bibinitperiod},
+           given={Danylo},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0e0fc7d0049091726ac731cc9b36d5ea}{%
+           family={Viazovska},
+           familyi={V\bibinitperiod},
+           given={Maryna},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{22672b39d356c1d353339553743244d4}
+      \strng{fullhash}{461411557a7dbb1884f1404c207afc5b}
+      \strng{fullhashraw}{461411557a7dbb1884f1404c207afc5b}
+      \strng{bibnamehash}{22672b39d356c1d353339553743244d4}
+      \strng{authorbibnamehash}{22672b39d356c1d353339553743244d4}
+      \strng{authornamehash}{22672b39d356c1d353339553743244d4}
+      \strng{authorfullhash}{461411557a7dbb1884f1404c207afc5b}
+      \strng{authorfullhashraw}{461411557a7dbb1884f1404c207afc5b}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The sphere packing problem in dimension 24}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.48550/ARXIV.1603.06518
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1603.06518
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1603.06518
+      \endverb
+      \keyw{Number Theory (math.NT),Metric Geometry (math.MG),FOS: Mathematics,FOS: Mathematics}
+    \endentry
+    \entry{MCA}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d4e4737d30067c7c431cbe13a74b6afc}{%
+           family={Gathen},
+           familyi={G\bibinitperiod},
+           given={Joachim\bibnamedelimb Von\bibnamedelima Zur},
+           giveni={J\bibinitperiod\bibinitdelim V\bibinitperiod\bibinitdelim Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e9532582f6e4150bb206e3e4fed2ea55}{%
+           family={Gerhard},
+           familyi={G\bibinitperiod},
+           given={Jurgen},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {USA}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{85a3794df30adb106a89a565d62c98d2}
+      \strng{fullhash}{85a3794df30adb106a89a565d62c98d2}
+      \strng{fullhashraw}{85a3794df30adb106a89a565d62c98d2}
+      \strng{bibnamehash}{85a3794df30adb106a89a565d62c98d2}
+      \strng{authorbibnamehash}{85a3794df30adb106a89a565d62c98d2}
+      \strng{authornamehash}{85a3794df30adb106a89a565d62c98d2}
+      \strng{authorfullhash}{85a3794df30adb106a89a565d62c98d2}
+      \strng{authorfullhashraw}{85a3794df30adb106a89a565d62c98d2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{From the Publisher:"Computer algebra systems are gaining more and more importance in all areas of science and engineering. This textbook gives a thorough introduction to the algorithmic basis of the mathematical engine in computer algebra systems." It is designed to accompany one- or two-semester courses for advanced undergraduate or graduate students in computer science or mathematics. Its comprehensiveness and authority make it also an essential reference for professionals in the area.}
+      \field{edition}{2}
+      \field{isbn}{0521826462}
+      \field{title}{Modern Computer Algebra}
+      \field{year}{2003}
+    \endentry
+    \entry{Goldreich1999}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=66aba379c7d3adb8af5b662a65c4c140}{%
+           family={Goldreich},
+           familyi={G\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3211adf5dbe7a65b2b1f58cab4f6a0c}{%
+           family={Micciancio},
+           familyi={M\bibinitperiod},
+           given={Daniele},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39a329e2b5e4ee534c5c5ef2f16d4b64}{%
+           family={Safra},
+           familyi={S\bibinitperiod},
+           given={Shmuel},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ed83c5ceed1edd0dbc3cc610adf79477}{%
+           family={Seifert},
+           familyi={S\bibinitperiod},
+           given={Jean-Pierre},
+           giveni={J\bibinithyphendelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{f7297e7dc88cdb1738f358f850a910b8}
+      \strng{fullhash}{211bcef8bb3845adc650b55630db7045}
+      \strng{fullhashraw}{211bcef8bb3845adc650b55630db7045}
+      \strng{bibnamehash}{f7297e7dc88cdb1738f358f850a910b8}
+      \strng{authorbibnamehash}{f7297e7dc88cdb1738f358f850a910b8}
+      \strng{authornamehash}{f7297e7dc88cdb1738f358f850a910b8}
+      \strng{authorfullhash}{211bcef8bb3845adc650b55630db7045}
+      \strng{authorfullhashraw}{211bcef8bb3845adc650b55630db7045}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information Processing Letters}
+      \field{number}{2}
+      \field{title}{Approximating Shortest Lattice Vectors is not Harder than Approximating Closest Lattice Vectors}
+      \field{volume}{71}
+      \field{year}{1999}
+      \field{pages}{55\bibrangedash 61}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1016/S0020-0190(99)00083-6
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/S0020-0190(99)00083-6
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/S0020-0190(99)00083-6
+      \endverb
+    \endentry
+    \entry{SP3}{misc}{}{}
+      \name{author}{22}{}{%
+        {{un=0,uniquepart=base,hash=6d5a580961f5a68ba57df1437bac86d9}{%
+           family={Hales},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc7e539f79baeb4c5f3a97bf098b3558}{%
+           family={Adams},
+           familyi={A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=78d4c8b1caaf756102e3c238ba7b2d8b}{%
+           family={Bauer},
+           familyi={B\bibinitperiod},
+           given={Gertrud},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e49a303dd8864b5b51b61d195fcba2be}{%
+           family={Dang},
+           familyi={D\bibinitperiod},
+           given={Dat\bibnamedelima Tat},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1d44b053f0953d217186bae6128bf61b}{%
+           family={Harrison},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9a325d4fb21ac545e46f734babdd0bfa}{%
+           family={Hoang},
+           familyi={H\bibinitperiod},
+           given={Truong\bibnamedelima Le},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=10a85b654f1367541fab90b023304aba}{%
+           family={Kaliszyk},
+           familyi={K\bibinitperiod},
+           given={Cezary},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=19567e921db6b68c86394bcc52711e13}{%
+           family={Magron},
+           familyi={M\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc9acf483d01341ec403e774fbb19c85}{%
+           family={McLaughlin},
+           familyi={M\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7ee583be359f308d4a8bda24396d7c04}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Thang\bibnamedelima Tat},
+           giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ac8c2ee2323af0180db3d295fd1e264c}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Truong\bibnamedelima Quang},
+           giveni={T\bibinitperiod\bibinitdelim Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a41b38c2580f5bb8c574d84f66e0856a}{%
+           family={Nipkow},
+           familyi={N\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dcf5964722780b65070d3265878421e4}{%
+           family={Obua},
+           familyi={O\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=676db95d0a6d74833bb2daa8ab0440f8}{%
+           family={Pleso},
+           familyi={P\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e6f207cdb337d5818e73e3a9c177053}{%
+           family={Rute},
+           familyi={R\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=53e6fd1d1c303424d69c7e7fb550440d}{%
+           family={Solovyev},
+           familyi={S\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9e36c6f1f9abc9e35ba50fdeaf36a63}{%
+           family={Ta},
+           familyi={T\bibinitperiod},
+           given={An\bibnamedelima Hoai\bibnamedelima Thi},
+           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=982ed3604c1af63fe15680d1b9540dba}{%
+           family={Tran},
+           familyi={T\bibinitperiod},
+           given={Trung\bibnamedelima Nam},
+           giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3220f49f4c404d3b660a3d96746016bc}{%
+           family={Trieu},
+           familyi={T\bibinitperiod},
+           given={Diep\bibnamedelima Thi},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=49a65895d90339355469ad0192f7f146}{%
+           family={Urban},
+           familyi={U\bibinitperiod},
+           given={Josef},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4b68ca212c4700df84865f568d4d6685}{%
+           family={Vu},
+           familyi={V\bibinitperiod},
+           given={Ky\bibnamedelima Khac},
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3a2cd684583e14a0cc556549bc72e85c}{%
+           family={Zumkeller},
+           familyi={Z\bibinitperiod},
+           given={Roland},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{fullhash}{e1c3e797f057e3483d24849021407b55}
+      \strng{fullhashraw}{e1c3e797f057e3483d24849021407b55}
+      \strng{bibnamehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{authorbibnamehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{authornamehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{authorfullhash}{e1c3e797f057e3483d24849021407b55}
+      \strng{authorfullhashraw}{e1c3e797f057e3483d24849021407b55}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A formal proof of the Kepler conjecture}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.48550/ARXIV.1501.02155
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1501.02155
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1501.02155
+      \endverb
+      \keyw{Metric Geometry (math.MG),Logic in Computer Science (cs.LO),FOS: Mathematics,FOS: Mathematics,FOS: Computer and information sciences,FOS: Computer and information sciences}
+    \endentry
+    \entry{cryptoeprint:2011/198}{misc}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=ecf4fabdf77d2ca70c9cf53b4037aca7}{%
+           family={Hanrot},
+           familyi={H\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2592ee37cf16695c54dbab15032b8b1d}{%
+           family={Pujol},
+           familyi={P\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a62525428858d55df35a4c76348af2b9}{%
+           family={Stehlé},
+           familyi={S\bibinitperiod},
+           given={Damien},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \strng{fullhash}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \strng{fullhashraw}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \strng{bibnamehash}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \strng{authorbibnamehash}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \strng{authornamehash}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \strng{authorfullhash}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \strng{authorfullhashraw}{cc8d777c4e9abe128e3254e9aa03feaa}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Cryptology {ePrint} Archive, Paper 2011/198}
+      \field{title}{Terminating {BKZ}}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb https://eprint.iacr.org/2011/198
+      \endverb
+      \verb{url}
+      \verb https://eprint.iacr.org/2011/198
+      \endverb
+    \endentry
+    \entry{Havas1998}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9954d291f9550e375541dac5225e7149}{%
+           family={Havas},
+           familyi={H\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f336620c2c637c8954de722b6005acea}{%
+           family={Majewski},
+           familyi={M\bibinitperiod},
+           given={Bohdan\bibnamedelima S.},
+           giveni={B\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=df8d5b6d7b103342902dd8e48dbc86c6}{%
+           family={Matthews},
+           familyi={M\bibinitperiod},
+           given={Keith\bibnamedelima R.},
+           giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Informa UK Limited}%
+      }
+      \strng{namehash}{64d926ca6a34657ec3f77acbc76c4828}
+      \strng{fullhash}{64d926ca6a34657ec3f77acbc76c4828}
+      \strng{fullhashraw}{64d926ca6a34657ec3f77acbc76c4828}
+      \strng{bibnamehash}{64d926ca6a34657ec3f77acbc76c4828}
+      \strng{authorbibnamehash}{64d926ca6a34657ec3f77acbc76c4828}
+      \strng{authornamehash}{64d926ca6a34657ec3f77acbc76c4828}
+      \strng{authorfullhash}{64d926ca6a34657ec3f77acbc76c4828}
+      \strng{authorfullhashraw}{64d926ca6a34657ec3f77acbc76c4828}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1944-950X}
+      \field{journaltitle}{Experimental Mathematics}
+      \field{month}{1}
+      \field{number}{2}
+      \field{title}{Extended GCD and Hermite Normal Form Algorithms via Lattice Basis Reduction}
+      \field{volume}{7}
+      \field{year}{1998}
+      \field{pages}{125\bibrangedash 136}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1080/10586458.1998.10504362
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1080/10586458.1998.10504362
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1080/10586458.1998.10504362
+      \endverb
+    \endentry
+    \entry{Kirchner2021}{inbook}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=68fce39c563af26dca5e572ce0b99d72}{%
+           family={Kirchner},
+           familyi={K\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b5a1d323fc51421309678e890cb3f94b}{%
+           family={Espitau},
+           familyi={E\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=52b1d5cf71b1a5f3f05e8f3cbf2770c4}{%
+           family={Fouque},
+           familyi={F\bibinitperiod},
+           given={Pierre-Alain},
+           giveni={P\bibinithyphendelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{364f975ced9209ee5676327314d32d27}
+      \strng{fullhash}{364f975ced9209ee5676327314d32d27}
+      \strng{fullhashraw}{364f975ced9209ee5676327314d32d27}
+      \strng{bibnamehash}{364f975ced9209ee5676327314d32d27}
+      \strng{authorbibnamehash}{364f975ced9209ee5676327314d32d27}
+      \strng{authornamehash}{364f975ced9209ee5676327314d32d27}
+      \strng{authorfullhash}{364f975ced9209ee5676327314d32d27}
+      \strng{authorfullhashraw}{364f975ced9209ee5676327314d32d27}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Cryptology – CRYPTO 2021}
+      \field{isbn}{9783030842451}
+      \field{issn}{1611-3349}
+      \field{title}{Towards Faster Polynomial-Time Lattice Reduction}
+      \field{year}{2021}
+      \field{pages}{760\bibrangedash 790}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1007/978-3-030-84245-1_26
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/978-3-030-84245-1_26
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/978-3-030-84245-1_26
+      \endverb
+    \endentry
+    \entry{Lenstra1982}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=29eaf03012c99e70910cfac7d9e34df8}{%
+           family={Lenstra},
+           familyi={L\bibinitperiod},
+           given={Lovász},
+           giveni={L\bibinitperiod},
+           givenun=0,
+           suffix={Lenstra},
+           suffixi={L\bibinitperiod},
+           suffixun=0}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{29eaf03012c99e70910cfac7d9e34df8}
+      \strng{fullhash}{29eaf03012c99e70910cfac7d9e34df8}
+      \strng{fullhashraw}{29eaf03012c99e70910cfac7d9e34df8}
+      \strng{bibnamehash}{29eaf03012c99e70910cfac7d9e34df8}
+      \strng{authorbibnamehash}{29eaf03012c99e70910cfac7d9e34df8}
+      \strng{authornamehash}{29eaf03012c99e70910cfac7d9e34df8}
+      \strng{authorfullhash}{29eaf03012c99e70910cfac7d9e34df8}
+      \strng{authorfullhashraw}{29eaf03012c99e70910cfac7d9e34df8}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1432-1807}
+      \field{journaltitle}{Mathematische Annalen}
+      \field{month}{12}
+      \field{number}{4}
+      \field{title}{Factoring polynomials with rational coefficients}
+      \field{volume}{261}
+      \field{year}{1982}
+      \field{pages}{515\bibrangedash 534}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1007/bf01457454
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/BF01457454
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/BF01457454
+      \endverb
+    \endentry
+    \entry{Mulders2003}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=278b013ea35fe1cb489a7ef625196d05}{%
+           family={Mulders},
+           familyi={M\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b2123460ac80cf0695b9e82d779c2674}{%
+           family={Storjohann},
+           familyi={S\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier BV}%
+      }
+      \strng{namehash}{989402032d1279f5222ffbf473f3580b}
+      \strng{fullhash}{989402032d1279f5222ffbf473f3580b}
+      \strng{fullhashraw}{989402032d1279f5222ffbf473f3580b}
+      \strng{bibnamehash}{989402032d1279f5222ffbf473f3580b}
+      \strng{authorbibnamehash}{989402032d1279f5222ffbf473f3580b}
+      \strng{authornamehash}{989402032d1279f5222ffbf473f3580b}
+      \strng{authorfullhash}{989402032d1279f5222ffbf473f3580b}
+      \strng{authorfullhashraw}{989402032d1279f5222ffbf473f3580b}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{month}{4}
+      \field{number}{4}
+      \field{title}{On lattice reduction for polynomial matrices}
+      \field{volume}{35}
+      \field{year}{2003}
+      \field{pages}{377\bibrangedash 401}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1016/s0747-7171(02)00139-6
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/S0747-7171(02)00139-6
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/S0747-7171(02)00139-6
+      \endverb
+    \endentry
+    \entry{Nguyen2009}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=500e4d6cc852eac325b85a406d5ca4d9}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Phong\bibnamedelima Q.},
+           giveni={P\bibinitperiod\bibinitdelim Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a62525428858d55df35a4c76348af2b9}{%
+           family={Stehlé},
+           familyi={S\bibinitperiod},
+           given={Damien},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Society for Industrial & Applied Mathematics (SIAM)}%
+      }
+      \strng{namehash}{a6b2571381abccbbc83f01dd366477be}
+      \strng{fullhash}{a6b2571381abccbbc83f01dd366477be}
+      \strng{fullhashraw}{a6b2571381abccbbc83f01dd366477be}
+      \strng{bibnamehash}{a6b2571381abccbbc83f01dd366477be}
+      \strng{authorbibnamehash}{a6b2571381abccbbc83f01dd366477be}
+      \strng{authornamehash}{a6b2571381abccbbc83f01dd366477be}
+      \strng{authorfullhash}{a6b2571381abccbbc83f01dd366477be}
+      \strng{authorfullhashraw}{a6b2571381abccbbc83f01dd366477be}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1095-7111}
+      \field{journaltitle}{SIAM Journal on Computing}
+      \field{month}{1}
+      \field{number}{3}
+      \field{title}{An LLL Algorithm with Quadratic Complexity}
+      \field{volume}{39}
+      \field{year}{2009}
+      \field{pages}{874\bibrangedash 903}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.1137/070705702
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1137/070705702
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1137/070705702
+      \endverb
+    \endentry
+    \entry{nielsen2013gmssr}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8b53db7471863415f7a015683110f5cf}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={Johan\bibnamedelimb S.\bibnamedelimi R.},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8b53db7471863415f7a015683110f5cf}
+      \strng{fullhash}{8b53db7471863415f7a015683110f5cf}
+      \strng{fullhashraw}{8b53db7471863415f7a015683110f5cf}
+      \strng{bibnamehash}{8b53db7471863415f7a015683110f5cf}
+      \strng{authorbibnamehash}{8b53db7471863415f7a015683110f5cf}
+      \strng{authornamehash}{8b53db7471863415f7a015683110f5cf}
+      \strng{authorfullhash}{8b53db7471863415f7a015683110f5cf}
+      \strng{authorfullhashraw}{8b53db7471863415f7a015683110f5cf}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the IEEE International Symposium on Information Theory (ISIT)}
+      \field{title}{Generalised Multi-sequence Shift-Register Synthesis using Module Minimisation}
+      \field{year}{2013}
+    \endentry
+    \entry{Novocin2011}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1cd6df3c3c393570a82853148fb8649f}{%
+           family={Novocin},
+           familyi={N\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a62525428858d55df35a4c76348af2b9}{%
+           family={Stehlé},
+           familyi={S\bibinitperiod},
+           given={Damien},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1c36c6d2ffa5c94d623839b3274f3c11}{%
+           family={Villard},
+           familyi={V\bibinitperiod},
+           given={Gilles},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{a448cb6f9c0235819390247c08a3e829}
+      \strng{fullhash}{a448cb6f9c0235819390247c08a3e829}
+      \strng{fullhashraw}{a448cb6f9c0235819390247c08a3e829}
+      \strng{bibnamehash}{a448cb6f9c0235819390247c08a3e829}
+      \strng{authorbibnamehash}{a448cb6f9c0235819390247c08a3e829}
+      \strng{authornamehash}{a448cb6f9c0235819390247c08a3e829}
+      \strng{authorfullhash}{a448cb6f9c0235819390247c08a3e829}
+      \strng{authorfullhashraw}{a448cb6f9c0235819390247c08a3e829}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the forty-third annual ACM symposium on Theory of computing}
+      \field{month}{6}
+      \field{series}{STOC’11}
+      \field{title}{An LLL-reduction algorithm with quasi-linear time complexity: extended abstract}
+      \field{year}{2011}
+      \field{pages}{403\bibrangedash 412}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/1993636.1993691
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/1993636.1993691
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/1993636.1993691
+      \endverb
+    \endentry
+    \entry{Ryan2023}{inbook}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=dfa459714f154c4fd416d88cb74b7f3b}{%
+           family={Ryan},
+           familyi={R\bibinitperiod},
+           given={Keegan},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3ad83fecd0fa965b650e3af91800c5bd}{%
+           family={Heninger},
+           familyi={H\bibinitperiod},
+           given={Nadia},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Nature Switzerland}%
+      }
+      \strng{namehash}{118cdb40aeb9ab5007947430b8eb06c7}
+      \strng{fullhash}{118cdb40aeb9ab5007947430b8eb06c7}
+      \strng{fullhashraw}{118cdb40aeb9ab5007947430b8eb06c7}
+      \strng{bibnamehash}{118cdb40aeb9ab5007947430b8eb06c7}
+      \strng{authorbibnamehash}{118cdb40aeb9ab5007947430b8eb06c7}
+      \strng{authornamehash}{118cdb40aeb9ab5007947430b8eb06c7}
+      \strng{authorfullhash}{118cdb40aeb9ab5007947430b8eb06c7}
+      \strng{authorfullhashraw}{118cdb40aeb9ab5007947430b8eb06c7}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Cryptology – CRYPTO 2023}
+      \field{isbn}{9783031385483}
+      \field{issn}{1611-3349}
+      \field{title}{Fast Practical Lattice Reduction Through Iterated Compression}
+      \field{year}{2023}
+      \field{pages}{3\bibrangedash 36}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.1007/978-3-031-38548-3_1
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/978-3-031-38548-3_1
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/978-3-031-38548-3_1
+      \endverb
+    \endentry
+    \entry{Schnorr1994}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cdea48810ec82f7bbdb89b7efa80a5ad}{%
+           family={Schnorr},
+           familyi={S\bibinitperiod},
+           given={C.\bibnamedelimi P.},
+           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6300c4e63f80be7f6ebd5d6176ae4ac5}{%
+           family={Euchner},
+           familyi={E\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \strng{fullhash}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \strng{fullhashraw}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \strng{bibnamehash}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \strng{authorbibnamehash}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \strng{authornamehash}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \strng{authorfullhash}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \strng{authorfullhashraw}{f79e29a5ac8807eb7df442e9aa6ea2c8}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1436-4646}
+      \field{journaltitle}{Mathematical Programming}
+      \field{month}{8}
+      \field{number}{1–3}
+      \field{title}{Lattice basis reduction: Improved practical algorithms and solving subset sum problems}
+      \field{volume}{66}
+      \field{year}{1994}
+      \field{pages}{181\bibrangedash 199}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1007/bf01581144
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/BF01581144
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/BF01581144
+      \endverb
+    \endentry
+    \entry{stephens-davidowitz_latticeproblems}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e8c1ff38b868b0ddb31c63f1990fd0d4}{%
+           family={Stephens-Davidowitz},
+           familyi={S\bibinithyphendelim D\bibinitperiod},
+           given={Noah},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \strng{fullhash}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \strng{fullhashraw}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \strng{bibnamehash}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \strng{authorbibnamehash}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \strng{authornamehash}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \strng{authorfullhash}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \strng{authorfullhashraw}{e8c1ff38b868b0ddb31c63f1990fd0d4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://noahsd.com/latticeproblems.pdf}}
+      \field{note}{Accessed: 2025-05-05}
+      \field{title}{Dimension-Preserving Reductions Between Lattice Problems}
+      \field{year}{2015}
+    \endentry
+    \entry{SP8}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0e0fc7d0049091726ac731cc9b36d5ea}{%
+           family={Viazovska},
+           familyi={V\bibinitperiod},
+           given={Maryna},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \strng{fullhash}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \strng{fullhashraw}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \strng{bibnamehash}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \strng{authorbibnamehash}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \strng{authornamehash}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \strng{authorfullhash}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \strng{authorfullhashraw}{0e0fc7d0049091726ac731cc9b36d5ea}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The sphere packing problem in dimension 8}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.48550/ARXIV.1603.04246
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1603.04246
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1603.04246
+      \endverb
+      \keyw{Number Theory (math.NT),Metric Geometry (math.MG),FOS: Mathematics,FOS: Mathematics}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

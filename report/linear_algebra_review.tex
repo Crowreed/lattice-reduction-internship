@@ -1,0 +1,324 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                                                                             %
+%                                                    ▗▄▖ ▗▄▄▖ ▗▄▄▖ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄ ▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖                                                            %
+%                                                   ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌▐▌   ▐▛▚▖▐▌▐▌  █  █  ▐▌   ▐▌                                                               %
+%                                                   ▐▛▀▜▌▐▛▀▘ ▐▛▀▘ ▐▛▀▀▘▐▌ ▝▜▌▐▌  █  █  ▐▌   ▐▛▀▀▘                                                            %
+%                                                   ▐▌ ▐▌▐▌   ▐▌   ▐▙▄▄▖▐▌  ▐▌▐▙▄▄▀▗▄█▄▖▝▚▄▄▖▐▙▄▄▖                                                            %
+%                                                                                                                                                             %
+%                     ▗▖   ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖ ▗▄▖ ▗▄▄▖      ▗▄▖ ▗▖    ▗▄▄▖▗▄▄▄▖▗▄▄▖ ▗▄▄▖  ▗▄▖     ▗▄▄▖ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖▗▖ ▗▖                               %
+%                     ▐▌     █  ▐▛▚▖▐▌▐▌   ▐▌ ▐▌▐▌ ▐▌    ▐▌ ▐▌▐▌   ▐▌   ▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌    ▐▌ ▐▌▐▌   ▐▌  ▐▌  █  ▐▌   ▐▌ ▐▌                               %
+%                     ▐▌     █  ▐▌ ▝▜▌▐▛▀▀▘▐▛▀▜▌▐▛▀▚▖    ▐▛▀▜▌▐▌   ▐▌▝▜▌▐▛▀▀▘▐▛▀▚▖▐▛▀▚▖▐▛▀▜▌    ▐▛▀▚▖▐▛▀▀▘▐▌  ▐▌  █  ▐▛▀▀▘▐▌ ▐▌                               %
+%                     ▐▙▄▄▖▗▄█▄▖▐▌  ▐▌▐▙▄▄▖▐▌ ▐▌▐▌ ▐▌    ▐▌ ▐▌▐▙▄▄▖▝▚▄▞▘▐▙▄▄▖▐▙▄▞▘▐▌ ▐▌▐▌ ▐▌    ▐▌ ▐▌▐▙▄▄▖ ▝▚▞▘ ▗▄█▄▖▐▙▄▄▖▐▙█▟▌                               %
+%                                                                                                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                                                                             %
+% Pas de sous-fichiers                                                                                                                                        %
+%                                                                                                                                                             %
+% Le fichier parent est : general_algebra_review.tex                                                                                                          %
+%                                                                                                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% La matrice de Gram d'une famille est diagonale si et seulement si la famille est orthogonale.
+% parler un peu de Gram et de Schmidt
+% dire que les endomorphismes sont vu comme des matrices dans la base canonique
+
+\chapter{Rappels d'algèbre linéaire}
+
+\label{appendix:linear_algebra}
+
+\vspace{-1cm}
+\begin{center}
+    \begin{minipage}{0.75\textwidth}
+        \lettrine{J}{ørgen} Pedersen Gram (1850–1916) était un mathématicien et ingénieur danois. Il est principalement connu pour ses contributions en analyse et en algèbre linéaire, notamment la \emph{matrice de Gram} et le procédé d’orthogonalisation de \emph{Gram-Schmidt} \footnotemark, utilisés dans l’étude des produits scalaires, des projections orthogonales et des bases orthonormées. Ses travaux ont également influencé les méthodes numériques et la statistique. Il est mort en 1916, renversé par un cycliste, une fin inattendue.
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.22\textwidth}
+        \includegraphics[width=\linewidth]{images/Gram.jpg}
+        \centering
+        \small\textit{Jørgen Pedersen Gram}
+    \end{minipage}
+\end{center}
+\vspace{0.5cm}
+\footnotetext{Le procédé d’orthogonalisation porte aussi le nom d’Erhard Schmidt (13 janvier 1876 – 6 décembre 1959), mathématicien allemand né à Dorpat, dans l’ancien Empire russe. Schmidt est reconnu comme l’un des pionniers de l’analyse fonctionnelle abstraite moderne, particulièrement par ses travaux sur la généralisation du procédé d’orthogonalisation aux espaces vectoriels de dimension infinie, aujourd’hui appelés espaces de Hilbert.}
+
+Dans ce mémoire, on se place dans l’espace euclidien \( (\R^n, \langle \cdot, \cdot \rangle) \) muni du produit scalaire canonique usuel qui induit la norme euclidienne \( \|\cdot\|_2 \). On rappelle que, dans un espace vectoriel, toute application linéaire est représentée, relativement à une base donnée, par une matrice, et que réciproquement, toute matrice définit une application linéaire. Ainsi, dans ce cadre, il est naturel d’identifier une matrice à l'application linéaire qu'elle représente.
+
+
+\begin{definition}
+    Soient \( n, p \in \N^* \), \( 1 \leq i \leq n \) et \( 1 \leq j \leq p \). On définit la \textbf{matrice élémentaire} \( E_{i,j} \in M^{n \x p}(\K) \) par :
+    \[
+    E_{i,j} = (\delta_{k,i} \delta_{l,j})_{1 \leq k \leq n,\ 1 \leq l \leq p},
+    \]
+    où \( \delta \) désigne le symbole de Kronecker. \footnote{On appelle \textbf{symbole de Kronecker} le nombre noté \( \delta _{i,j} \) qui vaut \( 1 \) si \( i=j \) , et \( 0 \) sinon.}
+\end{definition}
+
+\begin{example}
+    Prenons \( n = p = 3 \), et considérons \( i = 2 \), \( j = 3 \). Alors la matrice élémentaire \( E_{2,3} \in M_{3}(\K) \) est donnée par :
+    \[
+    E_{2,3} = 
+    \begin{pmatrix}
+        0 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & 0 & 0
+    \end{pmatrix}.
+    \]
+\end{example}
+
+\begin{theoreme}[Règle de Cramer]
+    Soient \( A \in \K^{n \x n} \) une matrice inversible et \( b \in \K^n \). Alors les coefficients de l’unique solution \( y = (y_1, \ldots, y_n)^t \in \K^n \) du système linéaire \( A y = b \) sont donnés par
+    \[
+    y_i = \frac{\det (A_i)}{\det (A)},
+    \]
+    où \( A_i \in \K^{n \x n} \) désigne la matrice obtenue à partir de \( A \) en remplaçant sa \( i \)-ième colonne par le vecteur \( b \).
+\end{theoreme}
+
+
+\section{Orthogonalisation de Gram--Schmidt}
+
+
+
+\begin{definition}[Base orthogonale]
+	Une base \( (\bb_i)_{1 \leq i \leq n} \) de \( \R^n \) est dite \textbf{orthogonale} si
+	
+	\[
+	\langle \bb_i, \bb_j\rangle = 0 \quad \text{pour tout } i \neq j.
+	\]
+\end{definition}
+
+Soit \( B = (\bb_1,\ldots,\bb_n) \) une base de \( \R^n \). On construit une base orthogonale associée \( B^* = (\bb_1^*,\ldots,\bb_n^*) \) de la façon suivante, appelée \textbf{procédé d'orthogonalisation de Gram-Schmidt} :
+\[
+\bb_1^* \coloneqq \bb_1, 
+\quad 
+\bb_i^* \coloneqq \bb_i - \sum_{j=1}^{i-1} \mu_{i,j}\, \bb_j^*, 
+\quad
+\mu_{i,j} \coloneqq \frac{\langle \bb_i,\bb_j^*\rangle}{\|\bb_j^*\|^2}.
+\]
+
+Les coefficients \( \mu_{i,j} \) sont appelés \textbf{coefficients de Gram-Schmidt}. 
+
+
+\begin{proposition}
+    La famille \( (\bb_i^*)_{1 \leq i \leq n} \) obtenue est orthogonale.
+\end{proposition}
+
+\begin{proof}
+    Pour \( n = 1 \), la famille est clairement orthogonale.
+    
+    Supposons que \( (\bb_i^*)_{1 \leq i \leq k} \) est orthogonale pour un certain \( k < n \).
+    
+    Alors
+    \[
+    \ps{\bb_{k+1}^*}{\bb_i^*} = \ps{\bb_{k+1}- \sum_{j=1}^{k} \gscoeff{\bb_{k+1}}{\bb_j^*}}{\bb_i^*} 
+    \]
+    
+    \[
+    = \ps{\bb_{k+1}}{\bb_i^*} - \ps{\sum_{j=1}^{k} \gscoeff{\bb_{k+1}}{\bb_j^*}}{\bb_i^*}
+    \]
+    
+    \[
+    = \ps{\bb_{k+1}}{\bb_i^*} - \ps{\gscoeff{\bb_{k+1}}{\bb_i^*}}{\bb_i^*} = 0
+    \]
+    
+    donc la famille \( (\bb_i^*)_{1 \leq i \leq k+1} \) est orthogonale et par le procédé de récurrence la famille \( (\bb_i^*)_{1 \leq i \leq n} \) est orthogonale.
+\end{proof}
+
+
+
+\begin{definition}
+    Le \textbf{complément orthogonal} de \( U \), noté \( U^\perp \), est défini par
+    \[
+    \left\{ x \in \R^n \mid \ps{x}{d} = 0 \quad \forall\, d \in U \right\}.
+    \]    
+\end{definition}
+
+\begin{proposition}
+    Pour tout \( k \leq n \), ~ \( \bg_k^* \) est la projection de \( \bg_k \) sur \( \displaystyle \left(\sum_{1 \leq i < k} \R \bg_i \right)^\perp\).\footnote{On rappelle que \( \R \bg_i = \{ x \bg_i | x \in \R\}\).}
+\end{proposition}
+
+On en déduit directement que \( \mu_{i, i} = 1 \) et \( \mu_{i, j} = 0 \) pour \( i < j \). En notant respectivement \( B \) et \( B^* \) les matrices dont les lignes sont les vecteurs \( (\bb_i)_{1 \leq i \leq n} \) et \( (\bb_i^*)_{1 \leq i \leq n} \), et en posant
+\[
+U \;=\; \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    \mu_{2,1} & \ddots & \ddots & \vdots \\
+    \vdots & \ddots & \ddots & 0 \\
+    \mu_{n,1} & \cdots & \mu_{n,n-1} & 1
+\end{pmatrix},
+\]
+on a la relation suivante :
+\begin{equation}
+    B = U\,B^*
+\end{equation}
+
+\begin{remark}
+    \leavevmode\vspace{0.3\baselineskip}
+    \begin{itemize}
+        \item \( U \) est triangulaire inférieure, en particulier \( \det(U)=1 \).
+        \item On ne fait pas de normalisation, afin d'éviter l'introduction de racines irrationnelles et de conserver l'information volumétrique du réseau associé.
+    \end{itemize}
+\end{remark}
+
+\begin{example}
+    Soit 
+    \[
+    B =
+    \begin{pmatrix}
+        1 & 1 & 1 \\
+        -1 & 0 & 2 \\
+        3 & 5 & 6
+    \end{pmatrix}
+    \in GL_3(\Z).
+    \]
+    
+    \begin{itemize}
+        \item[$\bullet$] Calcul de \( \bb_1^* \) :
+        \[
+        \bb_1^* = \bb_1 = (1, 1, 1)\text{ , } \quad \| \bb_1^* \|^2 = 3.
+        \]
+        
+        \item[$\bullet$] Calcul de \( \bb_2^* \) :
+        \[
+        \begin{aligned}
+            \bb_2^* &= \bb_2 - \gscoeff{\bb_2}{\bb_1^*} = (-1, 0, 2 ) - \frac{1}{3} (1, 1, 1) \\
+            &= \left(-\frac{4}{3}, -\frac{1}{3}, \frac{5}{3} \right) \\
+            \mu_{2,1} &= \frac{1}{3}, \quad \|\bb_2^*\|^2 = \frac{14}{3}.
+        \end{aligned}
+        \]
+        
+        \item[$\bullet$] Calcul de \( \bb_3^* \) :
+        \[
+        \begin{aligned}
+            \bb_3^* &= \bb_3 - \gscoeff{\bb_3}{\bb_1^*} - \gscoeff{\bb_3}{\bb_2^*} \\
+            &= (3, 5, 6) - \frac{14}{3}(1,1,1) - \frac{13}{14} \left(-\frac{4}{3}, -\frac{1}{3}, \frac{5}{3} \right) \\
+            &=\left(-\frac{3}{7}, \frac{9}{14}, - \frac{3}{14}\right)\\
+            \mu_{3,1} &= \frac{14}{3}, \quad \mu_{3,2} = \frac{13}{14}.
+        \end{aligned}
+        \] 
+    \end{itemize}
+    
+    On a donc finalement
+    \[
+    \begin{aligned}
+        U &= 
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            \frac{1}{3} & 1 & 0 \\
+            \frac{14}{3} & \frac{13}{14} & 1
+        \end{pmatrix}, \quad
+        B^* =
+        \begin{pmatrix}
+            1 & 1 & 1 \\
+            -\frac{4}{3} & - \frac{1}{3} & \frac{5}{3} \\
+            -\frac{3}{7} & \frac{9}{14} & - \frac{3}{14}
+        \end{pmatrix}.
+    \end{aligned}
+    \]
+\end{example}
+
+\begin{proposition}
+    On a \( \displaystyle \det(B)=\det(B^*) = \prod_{i=1}^n \| \bb_i^*\| \).
+\end{proposition}
+
+\begin{proof}
+    \( \displaystyle \det(B) \eqjust{D.1} \det(UB^*) = \det(U) \det(B^*) = \det(B^*) \eqjust{1.3} \prod_{i=1}^n \| \bb_i^*\|\)
+\end{proof}
+
+
+Une implémentation de l’algorithme d’orthogonalisation de Gram-Schmidt en SageMath est disponible sur le dépôt GitHub du projet.
+
+\begin{smallalgo}{Orthogonalisation de Gram–Schmidt}{alg:GSO}
+    \LinesNumbered 
+    \KwIn{Une famille libre \( B = (\bb_1, \ldots, \bb_n) \in M_n(\Q)\).}
+    \KwOut{La famille libre orthogonale \( B^* = (\bb_1^*, \ldots, \bb_n^*) \) et la matrice \( U \) des coefficients de Gram–Schmidt.}
+    
+    \For{\( k = 1 \) \KwTo \( n \)}{
+        \( \bb_k^* \gets \bb_k \)\;
+        \For{\( j = 1 \) \KwTo \( k-1 \)}{
+            \( U_{k,j} \gets \dfrac{\langle \bb_k^*, \bb_j^* \rangle}{\|\bb_j^*\|^2} \)\;
+            \( \bb_k^* \gets \bb_k^* - U_{k,j}\,\bb_j^* \)\;
+        }
+    }
+\end{smallalgo}
+
+\begin{theoreme}\label{thm:complexite-GSO}
+	L'algorithme \hyperref[alg:GSO]{\emph{Orthogonalisation de Gram-Schmidt}} effectue au plus \( \OO(n^3) \) opérations arithmétiques dans \( \Q \), où \( n \) est la taille de la famille.
+\end{theoreme}
+
+\section{Matrice de Gram}
+
+\begin{definition}
+    On note \( M \in M_{n}(\R) \) la matrice dont les colonnes sont les vecteurs \( e_1, \ldots, e_n \).
+    
+    La \textbf{matrice de Gram} associée est la matrice symétrique définie par :
+    \[
+    \Gram(M) \;=\;\bigl(\langle e_i, e_j \rangle\bigr)_{1 \le i,j \le n} \;\in\; M_n(\R),
+    \] 
+\end{definition}
+
+Autrement dit, 
+\[ 
+\Gram(M) \;= M^t M 
+\]
+
+\begin{remark}
+    \leavevmode\vspace{0.3\baselineskip}
+	\begin{itemize}
+		\item Les éléments diagonaux de \( G \) sont les carrés des normes \( \|e_i\|^2 \).
+		\item \( G \) est une matrice symétrique réelle.	
+	\end{itemize}
+\end{remark}
+
+\begin{proposition}
+    Soit \( M \in M_n(\R)\). $\Gram(M)$ est orthogonale si et seulement si ses colonnes forment une famille orthogonale.
+\end{proposition}
+
+
+\begin{example}
+    Soit 
+    
+    \[
+    B^* =
+    \begin{pmatrix}
+        1 & 1 & 1 \\
+        -\frac{4}{3} & -\frac{1}{3} & \frac{5}{3} \\
+        -\frac{3}{7} & \frac{9}{14} & -\frac{3}{14}
+    \end{pmatrix}
+    \]
+
+    Alors
+    \[
+    \Gram(B^*) = (B^*)^t \cdot B^* =
+    \begin{pmatrix}
+        1 & -\frac{4}{3} & -\frac{3}{7} \\
+        1 & -\frac{1}{3} & \frac{9}{14} \\
+        1 & \frac{5}{3} & -\frac{3}{14}
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+        1 & 1 & 1 \\
+        -\frac{4}{3} & -\frac{1}{3} & \frac{5}{3} \\
+        -\frac{3}{7} & \frac{9}{14} & -\frac{3}{14}
+    \end{pmatrix}
+    \]
+    \[
+    =
+    \begin{pmatrix}
+        3 & 0 & 0 \\
+        0 & \frac{14}{3} & 0 \\
+        0 & 0 & \frac{9}{14}
+    \end{pmatrix}
+    \]
+
+On en conclut que la famille est orthogonale, il s’agit en réalité de celle obtenue précédemment par le procédé d’orthogonalisation de Gram-Schmidt.
+\end{example}
+
+Rappelons enfin que si \( u \) et \( v \) sont des vecteurs unitaires, alors \( \langle u, v\rangle = \cos(\theta) \), où \( \theta \) est l'angle entre \( u \) et \( v \). Ainsi :
+
+\begin{itemize}
+	\item \( \langle u,v\rangle=1 \) signifie que \( u \) et \( v \) sont alignés et de même sens,
+	\item \( \langle u,v\rangle=0 \) signifie que \( u \) et \( v \) sont orthogonaux,
+	\item \( \langle u,v\rangle=-1 \) signifie que \( u \) et \( v \) sont alignés, mais de sens opposé.
+\end{itemize}
+
+Ce point de vue fait de la matrice de Gram un outil privilégié pour évaluer la similarité directionnelle dans un ensemble de vecteurs.
+
+
+\section{\textit{Complexité}}

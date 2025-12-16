@@ -1,0 +1,41 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                                                                             %
+%                                     ▗▄▄▖▗▖ ▗▖▗▄▄▄▖▗▄▄▄ ▗▄▄▄▖    ▗▄▄▄ ▗▄▄▄▖    ▗▖   ▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖▗▖ ▗▖▗▄▄▖ ▗▄▄▄▖                                           %
+%                                    ▐▌   ▐▌ ▐▌  █  ▐▌  █▐▌       ▐▌  █▐▌       ▐▌   ▐▌   ▐▌     █  ▐▌ ▐▌▐▌ ▐▌▐▌                                              %
+%                                    ▐▌▝▜▌▐▌ ▐▌  █  ▐▌  █▐▛▀▀▘    ▐▌  █▐▛▀▀▘    ▐▌   ▐▛▀▀▘▐▌     █  ▐▌ ▐▌▐▛▀▚▖▐▛▀▀▘                                           %
+%                                    ▝▚▄▞▘▝▚▄▞▘▗▄█▄▖▐▙▄▄▀▐▙▄▄▖    ▐▙▄▄▀▐▙▄▄▖    ▐▙▄▄▖▐▙▄▄▖▝▚▄▄▖  █  ▝▚▄▞▘▐▌ ▐▌▐▙▄▄▖                                           %
+%                                                                                                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                                                                             %
+% Pas de sous-fichiers                                                                                                                                        %
+%                                                                                                                                                             %
+% Le fichier parent est : report.tex                                                                                                                          %
+%                                                                                                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Guide de Lecture}
+\addcontentsline{toc}{chapter}{Guide de Lecture}
+
+\lettrine{\textbf{D}}{ans} ce mémoire, chaque définition est suivie d'un exemple concret illustrant la notion en question, ainsi que d'un contre-exemple visant à en exposer les subtilités et exceptions éventuelles. Cette approche permet de mieux comprendre les conditions et les limitations associées à chaque concept. L'objectif est de clarifier les différences entre les situations avec lesquelles une définition est applicable et celles où elle ne l'est pas, afin de renforcer la compréhension approfondie des théorèmes et constructions présentés.
+
+Ce mémoire s'adresse à un lecteur ayant une certaine familiarité avec l'algèbre linéaire et la théorie des algorithmes, mais qui n'est pas nécessairement spécialiste des réseaux. Les chapitres peuvent être lus dans l'ordre, mais selon l’objectif ou le temps disponible du lecteur, voici un aperçu de leur contenu et de leur rôle dans le fil directeur du travail :
+
+\begin{itemize}
+    \item[\( \bullet \)] \textbf{Introduction} Présente les réseaux euclidiens, la notion de réduction de réseau et la problématique du stage : peut-on adapter des techniques issues du cas polynomial au cas entier ? Ce chapitre donne également un aperçu de la motivation cryptographique.
+    
+    \item[\( \bullet \)] \textbf{Chapitre 1. Réseaux euclidiens:} Définitions formelles, exemples, propriétés fondamentales, ainsi que les problèmes algorithmiques classiques comme SVP et CVP. Un passage essentiel pour qui n’est pas encore familier avec ces objets.
+    
+    \item[\( \bullet \)] \textbf{Chapitre 2. Réduction de réseaux euclidiens:} Introduction détaillée à l’algorithme LLL, avec explication de son fonctionnement et un exemple complet. Ce chapitre est central pour comprendre l'approche de réduction dans le cas entier.
+    
+    \item[\( \bullet \)] \textbf{Chapitre 3. Correction, terminaison et complexité de LLL:} Contient les preuves rigoureuses de correction et d'efficacité de LLL. Le lecteur peu intéressé par les détails techniques pourra survoler ce chapitre en ne retenant que les idées-clés.
+    
+    \item[\( \bullet \)] \textbf{Chapitre 4. Réseaux polynomiaux:} Pose le cadre algébrique du cas polynomial, et introduit des outils spécifiques comme le degré de ligne ou la notion de décalage. Utile pour comprendre la suite, même sans entrer dans tous les détails.
+    
+    \item[\( \bullet \)] \textbf{Chapitre 5. Réduction de réseaux polynomiaux:} Présente les algorithmes de réduction exacts en temps polynomial dans le cadre polynomial : WeakPopovForm, M-Basis, PM-Basis. Ces méthodes inspireront les adaptations proposées ensuite.
+    
+    \item[\( \bullet \)] \textbf{Chapitre 6. Adaptation au cas euclidien:} Partie centrale du stage. On y explore comment transposer les méthodes du cas polynomial vers les réseaux entiers : algorithmes d’approximation, techniques de décalage, et analyse de complexité. Ce chapitre est le cœur exploratoire et prospectif du mémoire.
+    
+    \item[\( \bullet \)] \textbf{Annexes:} Fournissent les rappels nécessaires sur les groupes, anneaux, modules et notions d’algèbre linéaire. Elles permettent de clarifier certains fondements utilisés dans les chapitres principaux.
+\end{itemize}
+
+Le lecteur pressé pourra se limiter à la lecture des chapitres 1, 2, 4 et 6 pour avoir une vision d’ensemble du problème traité et des méthodes proposées.

@@ -1,0 +1,157 @@
+\documentclass[a4paper,12pt]{report}  % Déclare un document de type "report" (idéal pour les rapports longs)
+                                       % a4paper : Définit le format du papier en A4 (210 × 297 mm)
+                                       % 12pt : Définit la taille de police principale à 12 points (standard pour les rapports)
+
+\usepackage[utf8]{inputenc} % Permet d'écrire directement des accents et caractères spéciaux avec l'encodage UTF-8
+
+\usepackage[T1]{fontenc}  % Définit l'encodage des polices pour une meilleure gestion des caractères
+                          % T1 : Active un encodage qui améliore l'affichage des accents (é, à, ç...) 
+                          %      et la césure correcte des mots en français
+                          % Recommandé pour les documents en français
+
+\usepackage{amsmath, amsthm, amssymb}   % amsmath :  Pour des équations et des                                         notations mathématiques avancées.
+                                        % amsthm : Pour formater des théorèmes, définitions, propositions, etc.
+                                        % amssymb : Pour ajouter des symboles mathématiques supplémentaires
+
+% Définition d'un style pour les définitions
+\newtheoremstyle{definitionstyle}  % Nom du style
+  {10pt}                           % Espace avant
+  {10pt}                           % Espace après
+  {\normalfont}                    % Police normale
+  {}                               % Retrait
+  {\bfseries}                      % Titre en gras
+  {.}                              % Ponctuation après le titre
+  {1em}                            % Espace après le titre (ajout d'un petit                                    espace)
+  {}                               % Personnalisation du titre
+
+\theoremstyle{definitionstyle}
+
+\newtheorem{definition}{Définition}[chapter] % Numérotation par chapitres
+
+% Définition d'un style pour les exemples
+\newtheoremstyle{examplestyle}  % Nom du style
+  {10pt}                        % Espace avant
+  {10pt}                        % Espace après
+  {\normalfont}                 % Police normale
+  {}                            % Retrait
+  {\itshape}                    % Titre en italique
+  {.}                           % Ponctuation après le titre
+  {1em}                         % Espace après le titre
+  {}                            % Personnalisation du titre
+
+\theoremstyle{examplestyle}
+\newtheorem{example}{Exemple}[chapter] % Numérotation par section
+
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry} % Définition des marges du document (A4 avec 2.5 cm sur chaque côté)
+
+\usepackage[backend=biber,style=authoryear]{biblatex} % Gestion de la bibliographie
+\addbibresource{references.bib} % On inclue le fichier BibTeX references
+
+\usepackage{fancyhdr}     % En-têtes et pieds de page personnalisés
+
+\pagestyle{fancy}         % modification flexible de l'en-tête et du pied de                             page  
+\fancyhf{}                % vide l'en-tête et le pied de page
+\fancyhead[L]{\leftmark}  % Section ou chapitre courant
+\fancyfoot[C]{\thepage}   % Numéro de page au centre
+
+\usepackage{hyperref}   % Ajouter des liens hypertextes dans le document                                 (liens internes, externes, etc.), mettre les liens                             en surbrillance
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                          
+\usepackage[english,french]{babel} % Langue du document
+\usepackage{graphicx}       % Inclusion d'images
+\usepackage{float}
+\usepackage{color}
+\usepackage{comment}        % pour commenter plusieur ligne
+
+
+
+\begin{document}
+
+% En-tête
+\begin{titlepage}
+    \begin{center}
+        % Logos
+        \begin{figure}[t]
+            \centering
+            \includegraphics[width=0.35\textwidth]{logo/logo_LIRMM.jpg} 
+        \end{figure}
+        \begin{figure}[t]
+            \centering
+            \includegraphics[width=0.2\textwidth]{logo/logo_univ_mpt.png} 
+        \end{figure}
+
+        % Titre
+        \vspace{2cm}
+        \Huge{\textbf{Rapport de stage : trouver un titre intéréssant}} \\
+        \vspace{0.5cm}
+        \large{\textit{HAM2FDS4 : Stage académique}} \\
+        
+        % Espacement
+        \vspace{2cm}
+
+        % Auteurs
+        \large{
+            \textbf{Lucas Noirot} \\
+            (\texttt{lucas.noirot@etu.umontpellier.fr})
+        }
+        
+        % Espacement
+        \vspace{1.5cm}
+        
+        % Encadrant
+        \large{
+            \textbf{Encadrant :} \textbf{Romain Lebreton} \\
+            (\texttt{romain.lebreton@lirmm.fr})
+        }
+
+        % Espacement
+        \vspace{2cm}
+        
+        % Date
+        \normalsize{
+            \textbf{Date :}  17 février - 26 juin 2025
+        }
+    \end{center}
+\end{titlepage}
+
+
+% Table des matières
+\tableofcontents
+
+
+\chapter{Introduction}
+
+\chapter{Work in progress}
+
+\begin{definition}
+Soit $\mathbb{K}$ un corps et $M \in \mathbb{K}[x]_{1 \times n}$. On définit le \textbf{degré de ligne} du vecteur ligne M par : 
+$$rdeg(M)=max(deg(m_i))_{i\in\{1, \cdots, n\}}$$
+\end{definition}
+
+\begin{definition}
+Soit $\mathbb{K}$ un corps et $M \in \mathbb{K}[x]_{n \times n}$. On définit le \textbf{degré de ligne} de la matrice M par :
+$$rdeg(M)=max(rdeg(ligne_i))_{i\in\{1, \cdots, n\}}$$
+\end{definition}
+
+\begin{example}
+Soit $M =
+\begin{pmatrix}
+ & b & c \\
+5 & 0 & -3\\
+ & h & i
+\end{pmatrix}
+$
+
+\end{example}
+
+Je cite \cite{clef_unique_0} et \cite{clef_unique_1}  je cite \cite{clef_unique_2} et puis \cite{clef_unique_3} et finalement \cite{clef_unique_4}
+
+\chapter{Conclusion}
+
+
+\printbibliography
+
+\end{document}

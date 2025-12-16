@@ -1,0 +1,331 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                                                                             %
+%                                             ▗▄▄▖▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖▗▄▄▄▖ ▗▄▖ ▗▖  ▗▖    ▗▄▄▄▖        ▗▄▄▄▖▗▄▄▄▖                                                  %
+%                                            ▐▌   ▐▌   ▐▌     █    █  ▐▌ ▐▌▐▛▚▖▐▌      █            █    █                                                    %
+%                                             ▝▀▚▖▐▛▀▀▘▐▌     █    █  ▐▌ ▐▌▐▌ ▝▜▌      █            █    █                                                    %
+%                                            ▗▄▄▞▘▐▙▄▄▖▝▚▄▄▖  █  ▗▄█▄▖▝▚▄▞▘▐▌  ▐▌    ▗▄█▄▖        ▗▄█▄▖▗▄█▄▖                                                  %
+%                                                                                                                                                             %
+%                ▗▄▄▖  ▗▄▖ ▗▖ ▗▖  ▗▖▗▖  ▗▖ ▗▄▖ ▗▖  ▗▖▗▄▄▄▖ ▗▄▖ ▗▖       ▗▖    ▗▄▖▗▄▄▄▖▗▄▄▄▖▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖    ▗▄▄▖  ▗▄▖  ▗▄▄▖▗▄▄▄▖ ▗▄▄▖ ▗▄▄▖                  %
+%                ▐▌ ▐▌▐▌ ▐▌▐▌  ▝▚▞▘ ▐▛▚▖▐▌▐▌ ▐▌▐▛▚▞▜▌  █  ▐▌ ▐▌▐▌       ▐▌   ▐▌ ▐▌ █    █    █  ▐▌   ▐▌       ▐▌ ▐▌▐▌ ▐▌▐▌     █  ▐▌   ▐▌                     %
+%                ▐▛▀▘ ▐▌ ▐▌▐▌   ▐▌  ▐▌ ▝▜▌▐▌ ▐▌▐▌  ▐▌  █  ▐▛▀▜▌▐▌       ▐▌   ▐▛▀▜▌ █    █    █  ▐▌   ▐▛▀▀▘    ▐▛▀▚▖▐▛▀▜▌ ▝▀▚▖  █  ▐▌    ▝▀▚▖                  %
+%                ▐▌   ▝▚▄▞▘▐▙▄▄▖▐▌  ▐▌  ▐▌▝▚▄▞▘▐▌  ▐▌▗▄█▄▖▐▌ ▐▌▐▙▄▄▖    ▐▙▄▄▖▐▌ ▐▌ █    █  ▗▄█▄▖▝▚▄▄▖▐▙▄▄▖    ▐▙▄▞▘▐▌ ▐▌▗▄▄▞▘▗▄█▄▖▝▚▄▄▖▗▄▄▞▘                  %
+%                                                                                                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                                                                             %
+% Pas de sous-fichiers                                                                                                                                        %
+%                                                                                                                                                             %
+% Le fichier parent est : lattice_basics.tex                                                                                                                  %
+%                                                                                                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                                                                                             %
+% Il s'agit de la deuxième partie du chapitre 1 qui introduit les réseaux polyonomiaux.                                                                       %
+%                                                                                                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Réseaux polynomiaux}      
+
+\lettrine{L}{orsque} les coefficients des matrices appartiennent à un corps \( \K \), les opérations classiques telles que la multiplication, l'inversion, le calcul du déterminant ou la résolution de systèmes linéaires possèdent des complexités comparables. En revanche, lorsqu'on considère des matrices à coefficients dans l'anneau \( \K[x] \), des différences apparaissent : si le calcul du déterminant conserve la même complexité que celle du produit matriciel, l'inversion est plus coûteuse. Cette complexité découle de la structure de l'anneau \( \K[x] \) : bien qu'il s'agisse d'un anneau principal (à la différence de \( \K[x,y] \)), il ne s'agit pas d'un corps. Ainsi, certaines opérations, comme l’inversion, ne sont plus systématiquement réalisables. Notamment, dans \( \K[x] \), seuls les polynômes constants non nuls sont inversibles. Cette restriction impose de repenser et redéfinir rigoureusement plusieurs notions de l'algèbre linéaire. Les matrices à coefficients dans \( \K[x] \) sont essentielles dans de nombreuses applications. \footnote{Par exemple dans l’interpolation bivariée, une étape centrale du décodage des codes de Reed-Solomon}.  Ce chapitre vise à explorer les réseaux polynomiaux  et leurs propriétés spécifiques. 
+Ce mémoire avait pour ambition initiale de motiver rigoureusement l’introduction des bases réduites dans le cadre des matrices polynomiales. Toutefois, afin de ne pas aborder un sujet trop éloigné des objectifs du stage, et par souci de concision, nous ne détaillerons pas ici les aspects liés aux mesures de complexité. Ce que j'avais rédigé initialement se retrouve en annexe. Notons simplement qu’il est essentiel d’analyser finement le comportement des matrices polynomiales vis-à-vis des opérations algébriques usuelles, en particulier la multiplication. Cela justifie l’introduction de la notion de degré de ligne, qui jouera un rôle central dans le chapitre suivant.
+
+\section{Définitions et exemples}
+
+On commence par introduire la notion de réseau polynomial. Des rappels détaillés sur les anneaux et sur les modules sont dans l’annexe correspondante.
+
+\begin{definition}
+	Un \textbf{réseau polynomial} $\LL$ est un \( \K[x] \)-module libre de type fini.
+\end{definition}
+
+On peut montrer qu'il existe une famille $\K[x]$-libre maximale $(\bb_i)_{1 \leq i \leq m}$ dans $\LL$ telle que
+
+$$\LL = \bigoplus\limits_{1 \leq i \leq m} \K[x] \bb_i:=\{a_1\bb_1 + \cdots a_m\bb_m : a_i \in \K[x]\}$$
+
+
+Cette famille est appelée \textbf{base} de $\LL$, si on note \(B \in \K[x]^{m \x n} \) la matrice de la famille $(\bb_i)_{1 \leq i \leq m}$ on notera $\LL(B)$ le réseau de base $B$, donc \textbf{engendré} par la famille $(\bb_i)_{1 \leq i \leq m}$. L'entier $m$ est commun à toutes les bases de $\LL$ et on l'appelle \textbf{rang} de $\LL$. Lorsque $n=m$, on dit que le réseau est de \textbf{rang plein}. Un élément de \( \K[x]^{m \x n} \) est appelé matrice polynomiale.
+
+\begin{example}
+	\[B=
+	\begin{pmatrix}
+		3x + 4  & x^9 \\
+		5 & x^2 + 1
+	\end{pmatrix}
+	\in \R[x]^{2 \x 2}
+	\]
+	est une matrice polynomiale qui représente le réseau $\LL (B)$.
+\end{example}
+
+\begin{proposition}
+    Soient \( P \) et \( Q \) deux bases de lignes d’un même \( \F[x] \)-module libre . Alors, il existe une matrice unimodulaire \( U \) telle que
+    \[
+    P \;=\; U \, Q.
+    \]
+\end{proposition}
+On observe une analogie structurelle entre les matrices et les modules : de même que les matrices à coefficients dans \( \K \) sont naturellement liées aux \( \K \)-espaces vectoriels, les matrices à coefficients dans \( \K[x] \) interviennent dans l'étude des \( \K[x] \)-modules libres.
+
+\begin{comment}
+\section{Deux points de vue sur les matrices polynomiales}
+
+\begin{theoreme}
+    On dispose d'un \textbf{isomorphisme structurel} au sens des modules:
+    \[
+    \K[x]^{m \x n} \;\cong\; \K^{m\x n}\bigr[x]
+    \]
+\end{theoreme}
+
+\begin{example}
+    \[
+    \begin{pmatrix}
+        3x + 4  & x^9 \\
+        5 & x^2 + 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0 & 1 \\
+        0 & 0 
+    \end{pmatrix}
+    x^9
+    +
+    \begin{pmatrix}
+        0 & 0 \\
+        0 & 1 
+    \end{pmatrix}
+    x^2
+    +
+    \begin{pmatrix}
+        3 & 0 \\
+        0 & 0  
+    \end{pmatrix}
+    x
+    +
+    \begin{pmatrix}
+        4 & 0 \\
+        5 & 1 
+    \end{pmatrix} 
+    \]	
+
+
+
+\end{example}
+
+On peut donc interpréter une matrice polynomiale soit comme un polynôme à coefficients dans matriciel, soit comme une matrice à coefficients polynomiaux. Le choix de l’approche dépend alors principalement du type de calculs et d’estimations de complexité qu’on souhaite mener. Deux approches principales sont alors envisageables pour effectuer des calculs algébriques (résolution de systèmes, inversion, déterminant, etc.) :
+
+\begin{enumerate}
+    \item \textbf{Appliquer les algorithmes d'algèbre linéaire classique sur} \(\K[x]^{m \x n}\).
+    
+    On traite la matrice comme un objet usuel, en considérant simplement que les coefficients se trouvent dans l’anneau principal \( \K[x] \).
+    \begin{itemize}
+        \item[$\bullet$] \textbf{Avantage} : cette méthode tire parti de la robustesse théorique et de l'expérience accumulée avec les algorithmes classiques.
+        
+        \item[$\bullet$] \textbf{Limite} : on peut rapidement générer des calculs complexes, par exemple des fractions polynomiales de grand degré, et obtenir des bornes de complexité peu réaliste.
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    \item \textbf{Appliquer des algorithmes d'arithmétique polynomiale sur }\( \K^{m\x n}[x] \)
+    
+        \begin{itemize}
+        \item[$\bullet$] \textbf{Avantage} : on bénéficie de techniques optimisées pour les polynômes (accélération de la multiplication via FFT, etc.), on a un meilleur contrôle du degré.
+        
+        \item[$\bullet$] \textbf{Limite} : cela peut parfois s'avérer restrictif\footnote{Dans la division avec reste, on suppose souvent que \( B \) possède un coefficient dominant inversible (\( \mathrm{lc}(B)\neq 0 \)). On pourrait toutefois assouplir cette hypothèse, avec la notion de base "réduite" qui sera définie dans les prochains chapitres}
+        ou inefficace
+        \footnote{Si l'on travaille avec une matrice de degré \( d \) dont de nombreuses entrées ont un degré bien inférieur à \( d \), les algorithmes basés uniquement sur le degré maximal risquent de fournir des performances dégradées.}
+        , en particulier si les degrés des entrées diffèrent sensiblement d'une ligne ou d'une colonne à l'autre.
+    \end{itemize}
+\end{enumerate}
+
+\end{comment}
+
+\section{Notion de degré en ligne}
+
+\begin{comment}
+    \begin{definition}
+        Soit \( M \in \K[x]^{m \x n} \), la \textbf{taille} de \( M \), notée \( \size(M) \), est le nombre de coefficients distincts de \( \K \) nécessaires pour sa représentation dense.
+        
+        Et on a la relation
+        \[
+        \size(M) = \sum_{i,j} \size(a_{i,j}) = \sum_{i,j}( 1 + \max(0, \deg(M_{i,j}))).
+        \]
+    \end{definition}
+    En général, la taille n'est pas compatible avec le produit matriciel, mais cela peut être le cas dans certains cas particuliers.
+\end{comment}
+
+\begin{notation}
+    On note \( [d] \) un polynôme de degré \( d \). Par exemple \( x^2 + 1 \) sera noté \( [2] \), \(  x^9 \) sera noté \( [9] \).
+\end{notation}
+
+\begin{example}
+	La multiplication ne se passe pas forcément bien. On voit que cela donne des bornes non pertinentes et il serait utile de rajoute des critères de mesure du degré. Considérons les matrices de degrés :
+	\[
+	\begin{pmatrix} 
+		[100] & [1]  \\ 
+		[100] & [1]  
+	\end{pmatrix}
+	\begin{pmatrix}
+		[1] & [1]  \\ 
+		[1] & [1] 
+	\end{pmatrix}
+	=
+	\begin{pmatrix} 
+		[101] & [101] \\ 
+		[101] & [101] 
+	\end{pmatrix}
+	\]
+\end{example}
+
+\begin{definition}
+   \leavevmode\vspace{0.5\baselineskip}
+   
+         $\bullet \quad$ Pour \( \mathbf{m} = (m_1, \cdots ,m_n) \in \K[x]^{1 \x n} \), on définit son \textbf{degré en ligne} par :
+        \[
+        \rdeg(\mathbf{m}) = \max_{1 \leq i \leq n} \deg(m_i)\in \Z
+        \]
+         $\bullet \quad$ Pour \( M = 
+         \begin{pmatrix}
+             \cdots \mathbf{M_1} \cdots \\
+             \vdots \\
+             \cdots \mathbf{M_n} \cdots
+         \end{pmatrix}, 
+         \mathbf{M_i} \in \K[x]^{1 \x n}  ~~ \forall 1 \leq i \leq n \), on définit son \textbf{degré en ligne} par :
+        \[
+        \rdeg(M) = (\rdeg(\mathbf{M_i}))_{1 \leq i \leq n} \in \Z^n
+        \]
+\end{definition}
+
+\begin{example}
+    Soit
+    \(
+    M = 
+    \begin{pmatrix}
+        3x + 4  & x^9 \\
+        5 & x^2 + 1
+    \end{pmatrix}
+    \in \F_2[x].
+    \) 
+    Alors
+    \(
+    \rdeg(M)=
+    \begin{pmatrix}
+        \rdeg(~3x+4~,~x^9~) \\
+        \rdeg(~5~,~x^2+1~)
+    \end{pmatrix}
+= 
+\begin{pmatrix}
+    9 \\
+    2
+\end{pmatrix}
+    \)
+\end{example}
+
+Cette définition du degré de ligne présente une limite : si \( c=bA \), on a bien en général \( \rdeg(c)\leq \rdeg(b)+\rdeg(A) \), mais cette majoration est souvent trop lâche pour nos besoins. Ce qui nous intéresse est de pouvoir caractériser plus finement le degré de \( c \), voire d’obtenir une égalité. Cela motive l’introduction de la définition de degré décalé.
+
+\begin{definition}
+    Soit \( \vec{\mathbf{s}} =(s_1, \cdots, s_n)\in \Z^n \). On appelle \( \vec{\mathbf{s}} \) le \textbf{vecteur de décalage}.
+    
+    $\bullet \quad$ Pour \( \mathbf{m} = (m_1, \cdots ,m_n) \in \K[x]^{1 \x n} \), on définit son \textbf{degré en ligne \( \vec{\mathbf{s}} \)-décalé} par :
+        \[
+        \rdeg_{\vec{\mathbf{s}}}(\mathbf{m}) = \max_{1 \leq i \leq n} (\deg(m_i) + s_i)
+        \]
+        
+        $\bullet \quad$ Pour \( M = 
+        \begin{pmatrix}
+            \cdots \mathbf{M_1} \cdots \\
+            \vdots \\
+            \cdots \mathbf{M_n} \cdots
+        \end{pmatrix}, 
+        \mathbf{M_i} \in \K[x]^{1 \x n}  ~~ \forall 1 \leq i \leq n \), on définit son \textbf{degré en ligne décalé} par :
+        \[
+        \rdeg_{\vec{\mathbf{s}}}(M) = \big( \rdeg_{\vec{\mathbf{s}}}(\mathbf{M_i}) \big)_{1 \leq i \leq m} \in \Z^m
+        \]
+\end{definition}
+
+\begin{notation}
+    Soit $\vec{\mathbf{s}}=(s_1, \cdots, s_n) \in \Z^n$. On note $x^{\vec{\mathbf{s}}}$ la matrice diagonale 
+    \(
+    \begin{pmatrix}	
+        x^{s_1} & & \\
+        & \ddots & \\
+        &  & x^{s_n}
+    \end{pmatrix} \in M_n(\K [x])
+    \).
+\end{notation}
+
+\begin{proposition}
+    Soit \( A \in \K[x]^{m \x n} \), et \( \vec{\mathbf{s}} \in \Z^n \). Alors \( \rdeg_{\vec{\mathbf{s}}}(A) = \rdeg (A x^{\vec{\mathbf{s}}}) \).
+\end{proposition}
+
+\begin{example}
+    Soit
+    \(
+    M =
+    \begin{pmatrix}
+        3x + 4  & x^9 \\
+        5 & x^2 + 1
+    \end{pmatrix}
+    \in \R_2[x]
+    \quad \text{et} \quad \vec{\mathbf{s}} =(8, 0)
+    \)
+    
+    Alors
+    \[
+    \rdeg_{\vec{\mathbf{s}}} (M) = \rdeg (M\cdot x^{\vec{\mathbf{s}}}) =
+    \rdeg
+    \begin{pmatrix}
+        3x^9 + 4 x^8 & x^9\\
+        5x^8 & x^2+1 
+    \end{pmatrix} 
+    =(9, 8)
+    \]
+\end{example}
+
+\begin{proposition}
+    Soit \( A \in \K[x]^{m \x n} \) et \( \vec{\mathbf{s}} \in \Z^n \). Alors, on a les propriétés suivantes :
+    
+        $\bullet ~$ \( \rdeg_{\vec{\mathbf{s}}}(A) = \vec{\mathbf{v}} \) si et seulement si \( \rdeg(x^{-\vec{\mathbf{v}}} A x^{\vec{\mathbf{s}}}) = 0 \).  
+        
+        $\bullet ~$ \( \rdeg_{\vec{\mathbf{s}}}(A) \leq \vec{\mathbf{v}} \) si et seulement si \( \rdeg(x^{-\vec{\mathbf{v}}} A x^{\vec{\mathbf{s}}}) \leq 0 \).  
+    
+\end{proposition}
+
+\begin{example}
+    Soit 
+    \[
+    F = 
+    \begin{pmatrix}
+        1 & 0         & 1 \\
+        x & 1         & x + 1 \\
+        1 & x^3 + x^2 & x
+    \end{pmatrix},
+    \quad \vec{\mathbf{u}} = (1, 0, 0, 1).
+    \]
+    
+    Alors 
+    \[
+    \vec{\mathbf{v}} = \rdeg_{\vec{\mathbf{u}}}(F) = (1,2,3,4)
+    \quad \text{et} \quad
+    x^{-\vec{\mathbf{v}}} A x^{\vec{\mathbf{s}}} =
+    \begin{pmatrix}
+        1 & 0 & x^{-1} \\
+        1 & x^{-2} & x^{-2} + x^{-1} \\
+        x^{-2} & x^{-1} + 1 & x^{-2}
+    \end{pmatrix}.
+    \]
+\end{example}
+
+On va définir un ordre sur les degrés de ligne, bien que non total.
+
+\begin{definition}
+    Soit \( m \in \N^* \) et soient \( \mathbf{u} = (u_1, \dots, u_m) \), \( \mathbf{v} = (v_1, \dots, v_m) \in \Z^m \) deux vecteurs de degrés de ligne, triés par valeur croissante.
+    On définit une relation d'ordre partiel, notée \( \leq_{ob} \) (ordre obtenu par composantes), par :
+    \[
+    \mathbf{u} \leq_{ob} \mathbf{v} \quad \text{si et seulement si} \quad u_i \leq v_i \quad \text{pour tout } i \in \{1, \dots, m\}.
+    \]
+\end{definition}
+
+\begin{proposition}
+    Soit \( A \in \K[x]^{m \x n} \), \( \vec{\mathbf{b}} \in \K[x]^{1 \x m} \) et \( \vec{\mathbf{c}}=\vec{\mathbf{b}}A \). Soit \( \vec{\mathbf{v}} = \rdeg_{\vec{\mathbf{u}}}(A) \) et \( w = \rdeg_{\vec{\mathbf{v}}}(b) \). 
+    
+    Alors
+    \[
+    \rdeg_{\vec{\mathbf{u}}}(c) \leq_{ob} w.
+    \]
+\end{proposition}
+
+Les notions de degrés introduites précédemment, ainsi que les techniques qui en découlent, permettent d'accélérer certains algorithmes dans des situations spécifiques. Cependant, elles présentent des limites structurelles importantes : notamment, les degrés de lignes et de colonnes ne possèdent pas de bonnes propriétés vis-à-vis de la multiplication matricielle. De plus, plusieurs problèmes restent ouverts quant à la possibilité d'obtenir des algorithmes plus efficaces pour le calcul du déterminant ou de l'inverse de matrices polynomiales. Ces obstacles mettent en évidence l'intérêt crucial de la réduction des matrices polynomiales, outil indispensable pour contrôler la croissance des degrés et améliorer ainsi les performances des algorithmes associés.

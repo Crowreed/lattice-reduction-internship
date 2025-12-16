@@ -1,0 +1,26 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {algocf}{\numberline {1}{\ignorespaces \textit {LLL}}}{12}{algocf.1}%
+\addvspace {10\p@ }
+\contentsline {algocf}{\numberline {2}{\ignorespaces \textit {Proprification de \( \mathbf {g}_{i} \)}}}{14}{algocf.2}%
+\contentsline {algocf}{\numberline {3}{\ignorespaces \textit {Réduction de \( \mathbf {g}_{i-1}, \mathbf {g}_i \)}}}{14}{algocf.3}%
+\contentsline {algocf}{\numberline {4}{\ignorespaces \textit {LLL}}}{15}{algocf.4}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {algocf}{\numberline {5}{\ignorespaces \textit {WeakPopovForm \blx@tocontentsinit {0}\parencite {Mulders2003} }}}{23}{algocf.5}%
+\contentsline {algocf}{\numberline {6}{\ignorespaces \textit {Basis}}}{24}{algocf.6}%
+\contentsline {algocf}{\numberline {7}{\ignorespaces \textit {M-Basis}}}{24}{algocf.7}%
+\contentsline {algocf}{\numberline {8}{\ignorespaces \textit {PM-Basis}}}{25}{algocf.8}%
+\addvspace {10\p@ }
+\contentsline {algocf}{\numberline {9}{\ignorespaces \textit {\textsc {PLE}$(A)$}}}{28}{algocf.9}%
+\contentsline {algocf}{\numberline {10}{\ignorespaces \textit {\textsc {Basis}$(F, p, \texttt {mode})$}}}{29}{algocf.10}%
+\contentsline {algocf}{\numberline {11}{\ignorespaces \textit {\textsc {LLL-DAC-Padique}$(F, p, \sigma )$}}}{30}{algocf.11}%
+\contentsline {algocf}{\numberline {12}{\ignorespaces \textit {\textsc {shiftLLL}}}}{30}{algocf.12}%
+\addvspace {10\p@ }
+\contentsline {algocf}{\numberline {13}{\ignorespaces \textit {Proprification de \( \mathbf {g}_{i} \)}}}{34}{algocf.13}%
+\contentsline {algocf}{\numberline {14}{\ignorespaces \textit {Réduction de \( \mathbf {g}_{i-1}, \mathbf {g}_i \)}}}{34}{algocf.14}%
+\contentsline {algocf}{\numberline {15}{\ignorespaces \textit {LLL}}}{35}{algocf.15}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {algocf}{\numberline {16}{\ignorespaces \textit {Orthogonalisation de Gram–Schmidt}}}{49}{algocf.16}%

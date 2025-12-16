@@ -1,0 +1,49 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{Liste des algorithmes}{}{chapter*.5}%
+\contentsline {chapter}{Table des figures}{}{chapter*.6}%
+\contentsline {chapter}{Notations, complexité et acronymes}{}{chapter*.7}%
+\contentsline {chapter}{Guide de Lecture}{}{chapter*.8}%
+\contentsline {chapter}{Déroulé du stage et motivations}{}{chapter*.9}%
+\contentsline {chapter}{Introduction}{}{chapter*.10}%
+\contentsline {chapter}{\numberline {1}Réseaux euclidiens}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Définitions et exemples}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Réseaux définis par relations plutôt que par générateurs}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Quelques problèmes algorithmiques liés aux réseaux euclidiens}{7}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Des problèmes faciles}{7}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Le problème du vecteur le plus court}{7}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Le problème du vecteur le plus proche}{8}{subsection.1.3.3}%
+\contentsline {chapter}{\numberline {2}Réduction de réseaux euclidiens}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}La base réduite}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Fonctionnement et exemple}{11}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Correction, terminaison et complexité de LLL}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Correction}{14}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Terminaison et complexité}{15}{section.3.2}%
+\contentsline {chapter}{État de l'art de la réduction de réseaux euclidiens et l'objectif de mon stage}{17}{chapter*.20}%
+\contentsline {chapter}{\numberline {4}Réseaux polynomiaux}{18}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Définitions et exemples}{18}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Notion de degré en ligne}{19}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Réduction de réseaux polynomiaux}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Généralités et notion de base d'ordre}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Algorithmes de calculs de base d'ordre}{23}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Cas initial quand \( \sigma = 1 \)}{23}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Algorithmes pour le cas général}{24}{subsection.5.2.2}%
+\contentsline {chapter}{\numberline {6}Adaptation de la réduction de réseaux polynomiaux au cas des réseaux euclidiens}{26}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Fonction potentielle et bornes}{26}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Les cas polynomial}{26}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Le cas entier}{26}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Vers une réduction LLL adaptée aux réseaux d’approximation}{27}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Comprendre le rôle du shift dans le cas euclidien}{30}{section.6.3}%
+\contentsline {chapter}{Conclusion}{32}{chapter*.21}%
+\contentsline {chapter}{\numberline {A}Détails de preuves de LLL}{33}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Terminaison et complexité}{36}{section.A.1}%
+\contentsline {chapter}{\numberline {B}Rappels sur les anneaux}{41}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Généralités}{41}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Anneaux de polynômes}{42}{section.B.2}%
+\contentsline {chapter}{\numberline {C}Rappels sur les modules}{43}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Généralités}{43}{section.C.1}%
+\contentsline {subsection}{\numberline {C.1.1}Sous-modules, type fini et modules libres}{43}{subsection.C.1.1}%
+\contentsline {section}{\numberline {C.2}Modules sur un anneau principal}{44}{section.C.2}%
+\contentsline {chapter}{\numberline {D}Rappels d'algèbre linéaire}{46}{appendix.D}%
+\contentsline {section}{\numberline {D.1}Orthogonalisation de Gram--Schmidt}{47}{section.D.1}%
+\contentsline {section}{\numberline {D.2}Matrice de Gram}{49}{section.D.2}%
+\contentsline {section}{\numberline {D.3}\textit {Complexité}}{50}{section.D.3}%
