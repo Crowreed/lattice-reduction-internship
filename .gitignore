@@ -2,6 +2,11 @@
 *.bbl
 *.bcf
 *.blg
+*.loa
+*.lof
+*.fls
+*.toc
+*.fdb_latexmk
 *.log
 *.nav
 *.out
