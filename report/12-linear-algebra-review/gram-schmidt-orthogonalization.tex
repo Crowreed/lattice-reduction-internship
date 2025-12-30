@@ -1,0 +1,167 @@
+\section{Orthogonalisation de Gram--Schmidt}
+
+\begin{definition}[Base orthogonale]
+    Une base \( (\bb_i)_{1 \leq i \leq n} \) de \( \R^n \) est dite \textbf{orthogonale} si
+
+    \[
+        \langle \bb_i, \bb_j\rangle = 0 \quad \text{pour tout } i \neq j.
+    \]
+\end{definition}
+
+Soit \( B = (\bb_1,\ldots,\bb_n) \) une base de \( \R^n \). On construit une base orthogonale associée \( B^* = (\bb_1^*,\ldots,\bb_n^*) \) de la façon suivante, appelée \textbf{procédé d'orthogonalisation de Gram-Schmidt} :
+\[
+    \bb_1^* \coloneqq \bb_1,
+    \quad
+    \bb_i^* \coloneqq \bb_i - \sum_{j=1}^{i-1} \mu_{i,j}\, \bb_j^*,
+    \quad
+    \mu_{i,j} \coloneqq \frac{\langle \bb_i,\bb_j^*\rangle}{\|\bb_j^*\|^2}.
+\]
+
+Les coefficients \( \mu_{i,j} \) sont appelés \textbf{coefficients de Gram-Schmidt}.
+
+
+\begin{proposition}
+    La famille \( (\bb_i^*)_{1 \leq i \leq n} \) obtenue est orthogonale.
+\end{proposition}
+
+\begin{proof}
+    Pour \( n = 1 \), la famille est clairement orthogonale.
+
+    Supposons que \( (\bb_i^*)_{1 \leq i \leq k} \) est orthogonale pour un certain \( k < n \).
+
+    Alors
+    \[
+        \ps{\bb_{k+1}^*}{\bb_i^*} = \ps{\bb_{k+1}- \sum_{j=1}^{k} \gscoeff{\bb_{k+1}}{\bb_j^*}}{\bb_i^*}
+    \]
+
+    \[
+        = \ps{\bb_{k+1}}{\bb_i^*} - \ps{\sum_{j=1}^{k} \gscoeff{\bb_{k+1}}{\bb_j^*}}{\bb_i^*}
+    \]
+
+    \[
+        = \ps{\bb_{k+1}}{\bb_i^*} - \ps{\gscoeff{\bb_{k+1}}{\bb_i^*}}{\bb_i^*} = 0
+    \]
+
+    donc la famille \( (\bb_i^*)_{1 \leq i \leq k+1} \) est orthogonale et par le procédé de récurrence la famille \( (\bb_i^*)_{1 \leq i \leq n} \) est orthogonale.
+\end{proof}
+
+
+
+\begin{definition}
+    Le \textbf{complément orthogonal} de \( U \), noté \( U^\perp \), est défini par
+    \[
+        \left\{ x \in \R^n \mid \ps{x}{d} = 0 \quad \forall\, d \in U \right\}.
+    \]
+\end{definition}
+
+\begin{proposition}
+    Pour tout \( k \leq n \), ~ \( \bg_k^* \) est la projection de \( \bg_k \) sur \( \displaystyle \left(\sum_{1 \leq i < k} \R \bg_i \right)^\perp\).\footnote{On rappelle que \( \R \bg_i = \{ x \bg_i | x \in \R\}\).}
+\end{proposition}
+
+On en déduit directement que \( \mu_{i, i} = 1 \) et \( \mu_{i, j} = 0 \) pour \( i < j \). En notant respectivement \( B \) et \( B^* \) les matrices dont les lignes sont les vecteurs \( (\bb_i)_{1 \leq i \leq n} \) et \( (\bb_i^*)_{1 \leq i \leq n} \), et en posant
+\[
+    U \;=\; \begin{pmatrix}
+        1         & 0      & \cdots      & 0      \\
+        \mu_{2,1} & \ddots & \ddots      & \vdots \\
+        \vdots    & \ddots & \ddots      & 0      \\
+        \mu_{n,1} & \cdots & \mu_{n,n-1} & 1
+    \end{pmatrix},
+\]
+on a la relation suivante :
+\begin{equation}
+    B = U\,B^*
+\end{equation}
+
+\begin{remark}
+    \leavevmode\vspace{0.3\baselineskip}
+    \begin{itemize}
+        \item \( U \) est triangulaire inférieure, en particulier \( \det(U)=1 \).
+        \item On ne fait pas de normalisation, afin d'éviter l'introduction de racines irrationnelles et de conserver l'information volumétrique du réseau associé.
+    \end{itemize}
+\end{remark}
+
+\begin{example}
+    Soit
+    \[
+        B =
+        \begin{pmatrix}
+            1  & 1 & 1 \\
+            -1 & 0 & 2 \\
+            3  & 5 & 6
+        \end{pmatrix}
+        \in GL_3(\Z).
+    \]
+
+    \begin{itemize}
+        \item[$\bullet$] Calcul de \( \bb_1^* \) :
+              \[
+                  \bb_1^* = \bb_1 = (1, 1, 1)\text{ , } \quad \| \bb_1^* \|^2 = 3.
+              \]
+
+        \item[$\bullet$] Calcul de \( \bb_2^* \) :
+              \[
+                  \begin{aligned}
+                      \bb_2^*   & = \bb_2 - \gscoeff{\bb_2}{\bb_1^*} = (-1, 0, 2 ) - \frac{1}{3} (1, 1, 1) \\
+                                & = \left(-\frac{4}{3}, -\frac{1}{3}, \frac{5}{3} \right)                  \\
+                      \mu_{2,1} & = \frac{1}{3}, \quad \|\bb_2^*\|^2 = \frac{14}{3}.
+                  \end{aligned}
+              \]
+
+        \item[$\bullet$] Calcul de \( \bb_3^* \) :
+              \[
+                  \begin{aligned}
+                      \bb_3^*   & = \bb_3 - \gscoeff{\bb_3}{\bb_1^*} - \gscoeff{\bb_3}{\bb_2^*}                                           \\
+                                & = (3, 5, 6) - \frac{14}{3}(1,1,1) - \frac{13}{14} \left(-\frac{4}{3}, -\frac{1}{3}, \frac{5}{3} \right) \\
+                                & =\left(-\frac{3}{7}, \frac{9}{14}, - \frac{3}{14}\right)                                                \\
+                      \mu_{3,1} & = \frac{14}{3}, \quad \mu_{3,2} = \frac{13}{14}.
+                  \end{aligned}
+              \]
+    \end{itemize}
+
+    On a donc finalement
+    \[
+        \begin{aligned}
+            U & =
+            \begin{pmatrix}
+                1            & 0             & 0 \\
+                \frac{1}{3}  & 1             & 0 \\
+                \frac{14}{3} & \frac{13}{14} & 1
+            \end{pmatrix}, \quad
+            B^* =
+            \begin{pmatrix}
+                1            & 1             & 1              \\
+                -\frac{4}{3} & - \frac{1}{3} & \frac{5}{3}    \\
+                -\frac{3}{7} & \frac{9}{14}  & - \frac{3}{14}
+            \end{pmatrix}.
+        \end{aligned}
+    \]
+\end{example}
+
+\begin{proposition}
+    On a \( \displaystyle \det(B)=\det(B^*) = \prod_{i=1}^n \| \bb_i^*\| \).
+\end{proposition}
+
+\begin{proof}
+    \( \displaystyle \det(B) \eqjust{D.1} \det(UB^*) = \det(U) \det(B^*) = \det(B^*) \eqjust{1.3} \prod_{i=1}^n \| \bb_i^*\|\)
+\end{proof}
+
+
+Une implémentation de l’algorithme d’orthogonalisation de Gram-Schmidt en SageMath est disponible sur le dépôt GitHub du projet.
+
+\begin{smallalgo}{Orthogonalisation de Gram–Schmidt}{alg:GSO}
+    \LinesNumbered
+    \KwIn{Une famille libre \( B = (\bb_1, \ldots, \bb_n) \in M_n(\Q)\).}
+    \KwOut{La famille libre orthogonale \( B^* = (\bb_1^*, \ldots, \bb_n^*) \) et la matrice \( U \) des coefficients de Gram–Schmidt.}
+
+    \For{\( k = 1 \) \KwTo \( n \)}{
+        \( \bb_k^* \gets \bb_k \)\;
+        \For{\( j = 1 \) \KwTo \( k-1 \)}{
+            \( U_{k,j} \gets \dfrac{\langle \bb_k^*, \bb_j^* \rangle}{\|\bb_j^*\|^2} \)\;
+            \( \bb_k^* \gets \bb_k^* - U_{k,j}\,\bb_j^* \)\;
+        }
+    }
+\end{smallalgo}
+
+\begin{theoreme}\label{thm:complexite-GSO}
+    L'algorithme \hyperref[alg:GSO]{\emph{Orthogonalisation de Gram-Schmidt}} effectue au plus \( \OO(n^3) \) opérations arithmétiques dans \( \Q \), où \( n \) est la taille de la famille.
+\end{theoreme}
