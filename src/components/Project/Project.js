@@ -114,7 +114,7 @@ export async function createProject() {
         <div style="display: flex; flex-direction: row;justify-content:center; gap:2rem; align-items: center;">
             <div>
                 <a href="${projectData.github}" target="_blank" class="github-link">
-                    <img src="/assets/img/github/github-mark-white.png">
+                    <img src="/src/img/github-mark-white.png">
                 </a>
             </div>
         
@@ -124,7 +124,7 @@ export async function createProject() {
 
             <div>
                 <a class="report" href="${projectData.pdf}" target="_blank" download>
-                    <img src="/assets/img/references/paper.svg" alt="">
+                    <img src="/src/img/paper.svg" alt="">
                 </a>
             </div>
         </div>
