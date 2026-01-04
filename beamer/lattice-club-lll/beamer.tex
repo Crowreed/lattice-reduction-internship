@@ -1,0 +1,1625 @@
+\documentclass{beamer}
+\usepackage[english]{babel}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ruled,vlined]{algorithm2e}
+
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,arrows.meta}
+\usetikzlibrary{fit}
+\usetikzlibrary{calc}
+\usepackage{ragged2e}
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\newenvironment{smallalgo}[2]{
+    \begin{center}
+        \begin{minipage}{0.95\linewidth}
+            \begin{algorithm}[H]
+                 \captionsetup{labelformat=empty}
+                 \caption*{\textit{#1}}
+                \vspace{4pt}
+                \LinesNumbered
+                \DontPrintSemicolon
+            }{
+            \end{algorithm}
+        \end{minipage}
+    \end{center}
+}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\usepackage{csquotes}
+\setlength{\bibitemsep}{1\baselineskip}                                            
+\addbibresource{references/references.bib}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{mdframed}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\hfuzz=200pt % Je t'interdis de te plaindre pour tout dépassement inférieur à 200pt (7cm)
+\newcommand{\SVP}{\mathrm{SVP}}
+\newcommand{\LLL}{\mathrm{LLL}}
+\newcommand{\CVP}{\mathrm{CVP}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\u}{\mathbf{u}}
+\renewcommand{\v}{\mathbf{v}}
+\newcommand{\bg}{\mathbf{g}}
+\renewcommand{\b}{\mathbf{b}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\LL}{\mathscr{L}}
+\newcommand{\OO}{\mathcal{O}}
+
+\DeclareMathOperator{\rdeg}{rdeg}
+\DeclareMathOperator{\MM}{MM}
+\DeclareMathOperator{\M}{M}
+\DeclareMathOperator{\lcoeff}{lcoeff}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\size}{size}
+\DeclareMathOperator{\Gram}{Gram}
+\providecommand{\x}{\times}
+\newcommand{\eqjust}[1]{\overset{(#1)}{=}}
+\newcommand{\leqjust}[1]{\overset{(#1)}{\leq}}
+\newcommand{\nint}[1]{\left\lceil #1 \right\rfloor} 
+\newcommand{\ps}[2]{\left\langle #1 , #2 \right\rangle}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\gscoeff}[2]{\frac{\ps{#1}{#2}}{\norm{#2}^2} #2}
+\newtheoremstyle{definitionstyle}
+{10pt}
+{10pt}
+{\normalfont}
+{}
+{\bfseries}
+{.}
+{1em}
+{}
+\theoremstyle{definitionstyle}
+\newtheoremstyle{examplestyle}
+{10pt}
+{10pt}
+{\normalfont}
+{}
+{\itshape}
+{.}
+{1em}
+{}
+\theoremstyle{examplestyle}
+\newtheorem*{counterexample}{Contre exemple}
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remarque}
+\newtheoremstyle{propositionstyle}
+{10pt}
+{10pt}
+{\normalfont}
+{}
+{\bfseries}
+{.}
+{1em}
+{}
+\usepackage[absolute,overlay]{textpos}
+\renewcommand*{\mkbibnamefamily}[1]{#1}
+\renewcommand*{\mkbibnamegiven}[1]{#1}
+% Force le retour à la ligne pour les liens et DOIs
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburlnumpenalty}{9000}
+
+\title{The LLL Algorithm: Lattice Basis Reduction and applications to Approximate Shortest Vector Problem}
+\author{Lucas Petit}
+\date{May 26, 2025}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Recap: Euclidean Space and Inner Product}
+    \uncover<2->
+    {
+        We consider a real finite-dimensional vector space $\R^n$ equipped with the standard \textbf{Euclidean inner product}:
+        \[
+            \ps{\u}{\v} := \sum_{i=1}^{n} \u_i \v_i
+        \]
+    }
+
+    \uncover<3->
+    {
+        This inner product induces the \textbf{Euclidean norm}:
+        \[
+            \|\u\|_2 = \sqrt{\ps{\u}{\u}} = \sqrt{\sum_{i=1}^{n} \u_i^2}
+        \]
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Recap: Euclidean Lattice}
+    \uncover<2->
+    {
+        A \textbf{Euclidean lattice} $\LL$ is a discrete additive subgroup of $\R^n$.
+    }
+
+    \begin{itemize}
+        \uncover<3->
+        {
+        \item[$\bullet$] \textbf{Additive subgroup:}
+              \[
+                  \mathbf{0} \in \LL\text{, } \mathbf{x} + \mathbf{y} \in \LL \text{, } -\mathbf{x} \in \LL \text{ for all } \mathbf{x}, \mathbf{y} \in \LL.
+              \]
+              }
+              \uncover<4->
+              {
+              \vspace{-0.3cm}
+        \item[$\bullet$]  \textbf{Discrete:} For every $\mathbf{x} \in \LL$, there exists $\varepsilon > 0$ such that
+              \[
+                  \mathcal{B}(\mathbf{x}, \varepsilon) \cap \LL = \{\mathbf{x}\}
+              \]
+              where $\mathcal{B}(\mathbf{x}, \varepsilon)$ denotes the open ball of radius $\varepsilon$ centered at $\mathbf{x}$.
+              }
+    \end{itemize}
+
+    \uncover<5->
+    {
+        \begin{figure}
+            \visible<6->
+            {
+                \includegraphics[width=0.25\textwidth]{images/lattice_5.png}
+            }
+            \visible<7->
+            {
+                \includegraphics[width=0.25\textwidth]{images/lattice_6.png}
+            }
+            \visible<8->
+            {
+                \includegraphics[width=0.25\textwidth]{images/lattice_7.png}
+            }
+
+            \caption{Example of lattice in $\R^2$}
+        \end{figure}
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Recap: Lattice Bases}
+
+    \uncover<2->
+    {
+        Any lattice $\LL \subseteq \R^n$ admits a maximal $\Z$-linearly independent family $(\b_i)_{1 \leq i \leq m}$, with \( m \leq n \) such that:
+        \[
+            \LL = \bigoplus_{i=1}^{m} \Z \b_i = \left\{ a_1 \b_1 + \cdots + a_m \b_m \mid a_i \in \Z \right\}
+        \]
+    }
+
+    \uncover<3->
+    {
+        This family is called a \textbf{basis} of the lattice $\LL$.
+    }
+
+    \uncover<4->
+    {
+        \begin{figure}
+            \visible<5->
+            {
+                \includegraphics[width=0.25\textwidth]{images/lattice_1.png}
+            }
+            \visible<6->
+            {
+                \includegraphics[width=0.25\textwidth]{images/lattice_2.png}
+            }
+            \visible<7->
+            {
+                \includegraphics[width=0.25\textwidth]{images/lattice_4.png}
+            }
+
+            \caption{Example of lattice with different basis in $\R^2$}
+        \end{figure}
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Two different bases of the same lattice}
+
+    \uncover<2->
+    {
+        \begin{figure}
+            \centering
+            \begin{minipage}{0.4\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{images/lattice_3.png}
+                \caption*{\shortstack{short, nearly orthogonal vectors\\\textbf{looks good}}}
+            \end{minipage}
+            \hfill
+            \begin{minipage}{0.4\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{images/lattice_4.png}
+                \caption*{\shortstack{long, skewed basis vectors\\\textbf{looks bad}}}
+            \end{minipage}
+        \end{figure}
+    }
+
+    \uncover<3->
+    {
+        Can we formalize this?
+    }
+
+    \uncover<4->
+    {
+        $\rightarrow$ notion of \textbf{quasi-orthogonal} (or \textbf{reduced}) bases.
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Recap: Orthogonal Bases and Gram-Schmidt Process}
+
+    \uncover<2->
+    {
+        A basis \( (\b_i)_{1 \leq i \leq n} \) of \( \R^n \) is called \textbf{orthogonal} if
+        \[
+            \langle \b_i, \b_j \rangle = 0 \quad \text{for all } i \neq j.
+        \]
+    }
+    \uncover<3->
+    {
+        \begin{figure}
+            \visible<4->
+            {
+                \includegraphics[width=0.3\textwidth]{images/lattice_8.png}
+            }
+            \visible<5->
+            {
+                \includegraphics[width=0.3\textwidth]{images/lattice_2.png}
+            }
+            \visible<6->
+            {
+                \includegraphics[width=0.3\textwidth]{images/lattice_3.png}
+            }
+
+            \caption{Orthogonal or not orthogonal basis}
+        \end{figure}
+    }
+
+    \uncover<7->
+    {
+        How an we compute an orthogonal basis ?
+    }
+    \uncover<8->
+    {
+
+        $\rightarrow$ \textbf{Gram-Schmidt orthogonalization process}
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Recap: Gram--Schmidt orthogonalization}
+
+    \uncover<2->
+    {
+        Let \( (\b_i)_{1 \leq i \leq n} \) be a basis of \( \R^n \). The associated orthogonal basis \( (\b_i^*)_{1 \leq i \leq n} \) is constructed via the \textbf{Gram–Schmidt orthogonalization process}:
+        \[
+            \b_1^* \coloneqq \b_1,
+            \quad
+            \b_i^* \coloneqq \b_i - \sum_{j=1}^{i-1} \mu_{i,j} \b_j^*,
+            \quad
+            \mu_{i,j} \coloneqq \frac{\langle \b_i, \b_j^* \rangle}{\|\b_j^*\|^2}.
+        \]
+    }
+
+    \uncover<3>
+    {
+        \centering
+        \includegraphics[width=0.4\textwidth]{images/slide07.png}
+
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Recap: Gram--Schmidt orthogonalization}
+
+    \uncover<2->
+    {
+        The coefficients \( \mu_{i,j} \) are called \textbf{Gram–Schmidt coefficients}.
+
+        \[
+            \begin{pmatrix}
+                \b_1   \\
+                \b_2   \\
+                \vdots \\
+                \b_n
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1         & 0      & \cdots      & 0      \\
+                \mu_{2,1} & \ddots & \ddots      & \vdots \\
+                \vdots    & \ddots & \ddots      & 0      \\
+                \mu_{n,1} & \cdots & \mu_{n,n-1} & 1
+            \end{pmatrix}
+            \times
+            \begin{pmatrix}
+                \b_1^* \\
+                \b_2^* \\
+                \vdots \\
+                \b_n^*
+            \end{pmatrix}
+        \]
+
+
+    }
+
+    \uncover<3>
+    {
+        The resulting family \( (\b_i^*)_{1 \leq i \leq n} \) is orthogonal.
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Example: Gram--Schmidt Orthogonalization}
+    \pause Let
+    \[
+        B =
+        \begin{pmatrix}
+            -2 & 2 & 1 \\
+            3  & 0 & 2 \\
+            2  & 2 & 0
+        \end{pmatrix}
+    \]
+
+    \vspace{1em}
+
+    \pause \textbf{Step 1 : } \(\b_1^* \pause := \pause \b_1 \pause := \pause (-2, 2, 1)\), \(\pause \| \b_1^* \|^2 \pause = \pause 2^2+2^2+1 \pause = \pause 9\)
+
+    \pause \textbf{Step 2 : } \( \mu_{2, 1} \pause = \frac{\ps{\b_2}{\b_1^*}}{\|\b_1^*\|^2} \pause = -\frac{4}{9} \pause \)
+
+    \( \b_2^* \pause := \pause \b_2 - \mu_{2, 1} \b_1^* \pause = (3, 0, 2) + \frac{4}{9} (-2, 2, 1) \pause = \left(\frac{19}{9}, \frac{8}{9}, \frac{22}{9}\right) \)
+
+    \pause \textbf{Step 3 :} \( \mu_{3, 1} = 0\) , \( \mu_{3, 2} = \frac{54}{101}, \pause \b_3^* = \left(\frac{88}{101}, \frac{154}{101}, -\frac{132}{101}\right)\)
+
+    \pause
+    \[
+        \overbrace{
+            \begin{pmatrix}
+                -2 & 2 & 1 \\
+                3  & 0 & 2 \\
+                2  & 2 & 0
+            \end{pmatrix}
+        }^{B}
+        = \pause
+        \overbrace{
+            \begin{pmatrix}
+                1            & 0              & 0 \\
+                -\frac{4}{9} & 1              & 0 \\
+                0            & \frac{54}{101} & 1
+            \end{pmatrix}
+        }^{U}
+        \x
+        \overbrace{
+            \begin{pmatrix}
+                -2             & 2               & 1                \\
+                \frac{19}{9}   & \frac{8}{9}     & \frac{22}{9}     \\
+                \frac{88}{101} & \frac{154}{101} & -\frac{132}{101}
+            \end{pmatrix}
+        }^{B^*}
+    \]
+\end{frame}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Size Reduction of a Basis}
+    \begin{textblock*}{12cm}(0.5cm, 1.2cm)
+        \uncover<2->
+        {
+            \textbf{Problem:} The Gram–Schmidt orthogonal basis of \( B \) is generally not a basis of the lattice \( \LL(B) \).
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(3.5cm, 2.7cm)
+        \only<3>{\includegraphics[width=0.5\textwidth]{images/lattice_00.png}}
+        \only<4>{\includegraphics[width=0.5\textwidth]{images/lattice_01.png}}
+    \end{textblock*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Size Reduction of a Basis}
+    \begin{textblock*}{12cm}(0.5cm, 1.2cm)
+        \uncover<2->
+        {
+            We want a basis of $\LL$ that \emph{approximates} the Gram–Schmidt basis as closely as possible:
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(4cm, 1.9cm)
+        \only<3>{\includegraphics[width=0.35\textwidth]{images/slide11_0.png}}
+        \only<4>{\includegraphics[width=0.35\textwidth]{images/slide11_1.png}}
+        \only<5>{\includegraphics[width=0.35\textwidth]{images/slide11_2.png}}
+        \only<6>{\includegraphics[width=0.35\textwidth]{images/slide11_3.png}}
+        \only<7>{\includegraphics[width=0.35\textwidth]{images/slide11_4.png}}
+        \only<8>{\includegraphics[width=0.35\textwidth]{images/slide11_4.png}}
+        \only<9->{\includegraphics[width=0.35\textwidth]{images/slide11_5.png}}
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,6cm)
+        \uncover<8->
+        {
+            We define the \textbf{nearest integer}, as
+            \(
+            \nint{x} \coloneqq \left\lfloor x + \tfrac{1}{2} \right\rfloor.
+            \)
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{6cm}(8.3cm,3.5cm)
+
+        \uncover<10->
+        {
+            \( \left|\nint{x}-x\right| \leq \frac{1}{2} \text{ for all } x \in \R \)
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,7.3cm)
+        \uncover<11->
+        {
+            \textbf{Definition:}
+            A basis is said to be \textbf{size-reduced} if:
+            \[
+                \max_{1 \leq j < i \leq n} |\mu_{i,j}| \leq \frac{1}{2}
+            \]
+        }
+
+
+    \end{textblock*}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Why Size Reduction is Not Enough}
+
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.4\textwidth]{images/lattice_not_sufficient.png}
+        \caption*{\small \textbf{A size-reduced basis.}}
+    \end{figure}
+    \pause
+    \[
+        \overbrace{
+            \begin{pmatrix}
+                3  & 4  \\
+                -2 & -1
+            \end{pmatrix}
+        }^{B}
+        =
+        \overbrace{
+            \begin{pmatrix}
+                1            & 0 \\
+                -\frac{2}{5} & 1
+            \end{pmatrix}
+        }^{U}
+        \cdot
+        \overbrace{
+            \begin{pmatrix}
+                3            & 4           \\
+                -\frac{4}{5} & \frac{3}{5}
+            \end{pmatrix}
+        }^{B^*}
+    \]
+    \pause \textit{Length reduction alone \textbf{does not imply} almost-orthogonality!}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Definition: Lovász condition}
+    \begin{textblock*}{12cm}(0.5cm,1.5cm)
+        \uncover<2->
+        {
+            Ideally, we would like to find a basis \( (\b_i)_{1 \leq i \leq n} \) of the lattice \( \LL \) such that:
+            \[
+                \| \b_1 \| = \lambda_1(\LL), \quad
+                \| \b_2 \| = \lambda_2(\LL), \quad \ldots, \quad
+                \| \b_n \| = \lambda_n(\LL)
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,3.3cm)
+        \uncover<3->
+        {
+            This would imply \( \| \b_1 \| \leq \cdots \leq \| \b_n \|\), but is it hard to find a such basis.
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,4cm)
+        \uncover<4->
+        {
+            A basis \( (\b_i)_{1 \leq i \leq m} \) satisfies the \textbf{original Lovász condition} if:
+            \[
+                \|\b_i^*\|^2 \leq 2\|\b_{i+1}^*\|^2 \quad \text{for all } 1 \leq i < n
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{\paperwidth}(0cm,5.5cm)
+        \centering
+        \only<5-10>{\includegraphics[width=0.28\textwidth]{images/lattice_not_sufficient.png}}
+        \only<11>{\includegraphics[width=0.28\textwidth]{images/lattice_LLLreduced.png}}
+    \end{textblock*}
+
+    \begin{textblock*}{2cm}(5.1cm,7.5cm)
+        \only<5-7> {\( \b_2 \)}
+        \only<8-11> {\( \b_1 \)}
+    \end{textblock*}
+
+    \begin{textblock*}{2cm}(5.7cm,6.1cm)
+        \only<11> {\( \b_2 \)}
+    \end{textblock*}
+
+    \begin{textblock*}{2cm}(7.2cm,5.5cm)
+        \only<5-7> {\( \b_1 \)}
+        \only<8-10> {\( \b_2 \)}
+    \end{textblock*}
+
+    \begin{textblock*}{\paperwidth}(0cm,8cm)
+        \centering
+        \only<6-7>{\textcolor{red}{\( \|\b_1^*\|^2 > 2\|\b_{2}^*\|^2 \)}}
+
+        \only<7>{We can swap \( \b_1 \) and \( \b_2 \).}
+    \end{textblock*}
+
+    \begin{textblock*}{\paperwidth}(0cm,8cm)
+        \centering
+        \only<9-10>{\textcolor{green}{\( \|\b_1^*\|^2 \leq 2\|\b_{2}^*\|^2 \)}}
+
+        \only<10>{We can size-reduce \( \b_1 \) and \( \b_2 \)!}
+    \end{textblock*}
+
+    % poruquoi opas faire une transition de lovasz à la formule plus simple et de dire que c'est equivalent pour notre propos
+
+    %+ EXEMPLE ET CONTRE EXEMPLE
+
+\end{frame}
+
+
+%\begin{frame}
+%    Si on veut
+%    \[
+%    \|b_i\|^2 \leq \|b_{i+1}\|^2
+%    \]
+%    En réecrivant dans la base de Gram--Schmidt :
+%    \[
+%    \|b_i^*\|^2 + \sum_{j < i} \mu_{i,j}^2 \|b_j^*\|^2 < \|b_{i+1}^*\|^2 + \mu_{i+1,i}^2 \|b_i^*\|^2 + \sum_{j < i} \mu_{i+1,j}^2 \|b_j^*\|^2
+%    \]
+%    
+%    En ignorant ces deux sommes, on retrouve la condition de Lovasz pour \( \delta = 1\): 
+%    
+%    \[
+%    \|b_i^*\|^2  < \|b_{i+1}^*\|^2 + \mu_{i+1,i}^2 \|b_i^*\|^2 
+%    \]
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Definition: \( \LLL \)-- reduced Basis}
+
+    A basis is called \( \LLL \)--reduced if:
+    \begin{itemize}
+        \item[$\bullet$] It is size-reduced;
+        \item[$\bullet$] It satisfies the Lovász condition.
+    \end{itemize}
+
+    % EXEMPLE DE DIFFERENTES BASES REDUITE OU NON AVEC INTERET CONDITION DE LOVASZ
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Recap:The $\gamma-\SVP$ Problem}
+
+    Definitions of \( \lambda_1 \), \( \lambda_2 \), \( \ldots \) are detailed in \parencite{Boudgoust2023}.
+
+    \vspace{1cm}
+    \pause \textbf{Approximate Shortest Vector Problem (\( \gamma-\SVP \))} \\
+    \vspace{0.5em}
+
+    Given a basis \( B \) of a lattice \( \LL \subset \R^n \) and an approximation factor \( \gamma > 0 \), \textbf{find a non-zero vector} \( \v \in \LL \setminus \{\mathbf{0}\} \) such that:
+    \[
+        \|\v\|_2 \leq \gamma \cdot \lambda_1(\LL)
+    \]
+
+    \vspace{1em}
+
+    \pause
+    \begin{tabular}{@{}ll}
+        \(\gamma = 1\)                & exact \( \SVP \) — NP-hard                          \\
+        \(\gamma = \mathrm{poly}(n)\) & relevant for \textbf{lattice-based cryptography}    \\
+        \(\gamma = 2^{\OO(n)}\)       & solvable in \textbf{polynomial time} via \( \LLL \) \\
+    \end{tabular}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Lemma}
+    \begin{textblock*}{12cm}(0.5cm, 1.2cm) % {largeur} (x,y)
+        \uncover<2->
+        {
+            \textbf{Lemma.} For any \( \b \in \LL \setminus \{\mathrm{0}\} \) we have:
+            \vspace{-0.1cm}
+            \[
+                \displaystyle \|\b\| \geq \min_{1 \leq i \leq n} \|\b_i\|
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,2.8cm)
+        \uncover<3->
+        {
+            \textbf{Proof.} Let \( (\b_i)_{1 \leq i \leq n} \) of the lattice \( \LL \), and write:
+            \vspace{-0.1cm}
+            \[
+                \b = \sum_{i=1}^n \lambda_i \b_i \in \LL \setminus \{0\}, \quad \lambda_i \in \Z.
+            \]
+            Let \( k \) be the largest index such that \( \lambda_k \neq 0 \).
+            We can write
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,5.5cm)
+        \only<4>
+        {
+            \[
+                \b = \sum_{i=1}^{n} \lambda_i \b_i
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,5.5cm)
+        \only<5>
+        {
+            \[
+                \b = \sum_{i=1}^{k} \lambda_i \b_i
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,5.5cm)
+        \only<6>
+        {
+            \[
+                \b = \sum_{i=1}^{k} \lambda_i \left( \b_i^* + \sum_{j=1}^{i} \mu_{ij} \b_j^* \right)
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,5.5cm)
+        \only<7>
+        {
+            \[
+                \b = \sum_{i=1}^{k} \lambda_i \b_i^* + \lambda_i \sum_{j=1}^{i} \mu_{ij} \b_j^*
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,5.5cm)
+        \only<8>
+        {
+            \[
+                \b = \lambda_k \b_k^* + \sum_{i < k} \lambda_i \sum_{j=1}^{i} \mu_{ij} \b_j^*
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,5.5cm)
+        \only<9->
+        {
+            \[
+                \b = \lambda_k \mathbf{b}_k^* + \sum_{i < k} \nu_i \b_i^*, \quad \nu_i \in \R
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,6.5cm)
+        \only<10->
+        {
+            Hence
+            \[
+                \|\b\|^2 = \lambda_k^2 \|\b_k^*\|^2 + \sum_{i<k} \nu_i^2 \|\b_i^*\|^2
+            \]
+
+            \[
+                \displaystyle
+                \only<9->{\geq \lambda_k^2 \|\b_k^*\|^2}
+                \only<10->{\geq \|\b_k^*\|^2}
+                \only<11->{\geq \min_{1 \leq i \leq n} \|\b_i\|}
+            \]
+        }
+    \end{textblock*}
+
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Theorem: Bound on First Vector in a Reduced Basis}
+
+    \begin{textblock*}{12cm}(0.5cm, 1.2cm)
+        \uncover<2->
+        {
+            \textbf{Theorem.} Let \( (\b_i)_{1 \leq i \leq n} \) be a reduced basis of a lattice \( \LL \subseteq \R^n \), and let \( \b \in \LL \setminus \{0\} \). Then:
+            \[
+                \|\b_1\| \leq 2^{(n-1)/2} \cdot \|\b\|.
+            \]
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,2.5cm)
+        \uncover<3>
+        {
+            \textbf{Proof.}
+            \[
+                \|\b_1\|^2  =  \|\b_1^*\|^2\leq 2 \|\b_2^*\|^2  \leq 2^2 \|\b_3^*\|^2  \leq \cdots \leq  2^{n-1} \|\b_n^*\|^2.
+            \]
+            Thus,
+            \[
+                \|\b\|  \geq \min\{\|\b_1^*\|, \dots, \|\b_n^*\|\}  \geq 2^{-(n-1)/2} \|\b_1\|
+            \]
+            \qed
+        }
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,2.5cm)
+
+        \uncover<5->
+        {
+            \textbf{Corollary.}
+            \[
+                \|\b_1\| \leq 2^{(n-1)/2} \cdot \lambda_1(\LL).
+            \]
+        }
+
+        \uncover<6->
+        {
+            \textbf{Interpretation.} The vector \( \b_1 \) of a reduced basis \textbf{solves} \(  2^{(n-1)/2} - \SVP\).
+        }
+
+        \uncover<7->
+        {
+            How can we compute a reduced basis in practice?
+        }
+        \uncover<8>
+        {
+
+            $\rightarrow$ Use the \( \LLL \) \parencite{Lenstra1982}(Lenstra, Lenstra, Lovasz) algorithm!
+        }
+    \end{textblock*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{LLL Algorithm}
+
+    \uncover<2->
+    {
+        \begin{smallalgo}{LLL}{algo:LLL_MCA}
+            \LinesNumbered
+            \DontPrintSemicolon
+            \KwIn{A basis \( B = (\b_1, \ldots, \b_n) \)}
+            \KwOut{An LLL-reduced basis \( G = (\bg_1, \ldots, \bg_n) \)}
+
+            \( G \leftarrow copy(B)\)
+
+
+            \tikz[remember picture, baseline=(gs.base)]{
+                \node[inner sep=1pt] (gs) {
+                    \( (G^*, U) \leftarrow \) Gram-Schmidt \( G \)\;
+                };
+            }
+
+
+            \While{\( i \leq n \)}{
+
+                \For{\( j = i-1, i-2, \ldots, 1 \)}{
+                    \tikz[remember picture, baseline=(size.base)]{
+                        \node[inner sep=1pt] (size) {
+                            \( \bg_i \leftarrow \bg_i - \nint{\mu_{i,j}} \, \bg_j \), update \( (G^*, U) \)\;
+                        };
+                    }
+                }
+
+                \If{
+                    \( i > 1 \) \textbf{and}
+                    \tikz[remember picture, baseline=(lov.base)]{
+                        \node[inner sep=1pt] (lov) {
+                            \( \|\bg_{i-1}^*\|^2 > 2 \|\bg_i^*\|^2 \)
+                        };
+                    }
+                }{
+                    Swap \( \bg_{i-1} \) and \( \bg_i \), update \((G^*, U)\)\;
+                    \( i \leftarrow i - 1 \)\;
+                }
+                \Else{
+                    \( i \leftarrow i + 1 \)\;
+                }
+            }
+
+            \KwRet{\( G \)}
+        \end{smallalgo}
+    }
+
+
+
+    % Encadrés en overlay
+    \begin{tikzpicture}[remember picture, overlay]
+
+        % Encadré vert gram-schmidt
+        \visible<3->{
+            \node[draw=green, thick, rounded corners, fit=(gs), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0.3cm]gs.east) {\textbf{\textcolor{green}{Gram-Schmidt}}};
+        }
+
+        % Encadré bleu size-reduction
+        \visible<4->{
+            \node[draw=blue, thick, rounded corners, fit=(size), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0.3cm]size.east) {\textbf{\textcolor{blue}{Size Reduction}}};
+        }
+
+        % Encadré rouge Lovász
+        \visible<5->{
+            \node[draw=red, thick, rounded corners, fit=(lov), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=1.3cm]lov.east) {\textbf{\textcolor{red}{Lovász Condition}}};
+        }
+
+    \end{tikzpicture}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}{Example}
+    \pause Let's compute a LLL reduced basis of \( \LL (B) \) with
+    \[
+        B \coloneqq
+        \begin{pmatrix}
+            -2 & 2 & 1 \\
+            3  & 0 & 2 \\
+            2  & 2 & 0
+        \end{pmatrix}
+    \]
+
+    \pause We start by compute its Gram-Schmidt decomposition :
+
+    \pause We did it previously!
+
+    \pause
+    \[
+        \overbrace{
+            \begin{pmatrix}
+                -2 & 2 & 1 \\
+                3  & 0 & 2 \\
+                2  & 2 & 0
+            \end{pmatrix}
+        }^{B}
+        =
+        \overbrace{
+            \begin{pmatrix}
+                1            & 0              & 0 \\
+                -\frac{4}{9} & 1              & 0 \\
+                0            & \frac{54}{101} & 1
+            \end{pmatrix}
+        }^{U}
+        \x
+        \overbrace{
+            \begin{pmatrix}
+                -2             & 2               & 1                \\
+                \frac{19}{9}   & \frac{8}{9}     & \frac{22}{9}     \\
+                \frac{88}{101} & \frac{154}{101} & -\frac{132}{101}
+            \end{pmatrix}
+        }^{B^*}
+    \]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Example}
+    \uncover<2->
+    {
+        \[
+            \begin{tikzpicture}[remember picture,baseline=(E1.base)]
+                \node (E1)
+                {
+                    \(
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            -2 & 2 & 1 \\
+                            3  & 0 & 2 \\
+                            2  & 2 & 0
+                        \end{pmatrix}
+                    }_{G}
+                    =
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            1            & 0              & 0 \\
+                            -\frac{4}{9} & 1              & 0 \\
+                            0            & \frac{54}{101} & 1
+                        \end{pmatrix}
+                    }_{U}
+                    \cdot
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            -2             & 2               & 1                \\
+                            \frac{19}{9}   & \frac{8}{9}     & \frac{22}{9}     \\
+                            \frac{88}{101} & \frac{154}{101} & -\frac{132}{101}
+                        \end{pmatrix}
+                    }_{G^*}
+                    \)
+                };
+            \end{tikzpicture}
+        \]
+    }
+
+    \vspace{2cm}
+
+    \uncover<5->
+    {
+        \[
+            \begin{tikzpicture}[remember picture,baseline=(E2.base)]
+                \node (E2)
+                {
+                    \(
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            -2 & 2 & 1  \\
+                            3  & 0 & 2  \\
+                            -1 & 2 & -2
+                        \end{pmatrix}
+                    }_{G}
+                    =
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            1            & 0               & 0 \\
+                            -\frac{4}{9} & 1               & 0 \\
+                            0            & -\frac{47}{101} & 1
+                        \end{pmatrix}
+                    }_{U}
+                    \cdot
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            -2             & 2               & 1                \\
+                            \frac{19}{9}   & \frac{8}{9}     & \frac{22}{9}     \\
+                            \frac{88}{101} & \frac{154}{101} & -\frac{132}{101}
+                        \end{pmatrix}
+                    }_{G^*}
+                    \)
+                };
+            \end{tikzpicture}
+        \]
+    }
+
+    \only<3>
+    {
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw[->,
+                thick,
+                shorten >=2pt,
+                shorten <=2pt,
+                >=Latex
+            ]
+            (E1.south) to
+            node[midway, left] {\textbf{\textcolor{blue}{Size Reduction}}}
+            node[midway, right] {$\bg_3 \leftarrow \bg_3-\nint{\frac{54}{101}} \cdot \bg_2$}
+            (E2.north);
+        \end{tikzpicture}
+    }
+
+    \only<4->
+    {
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw[->,
+                thick,
+                % change l’angle de courbure
+                shorten >=2pt,           % décale la pointe
+                shorten <=2pt,           % décale la base
+                >=Latex                  % style de la pointe
+            ]
+            (E1.south) to
+            node[midway, left] {\textbf{\textcolor{blue}{Size Reduction}}}
+            node[midway, right] {$\bg_3 \leftarrow \bg_3-1 \cdot \bg_2$}
+            (E2.north);
+        \end{tikzpicture}
+    }
+
+
+\end{frame}
+
+\begin{frame}{Example}
+
+    \uncover<3->
+    {
+        \[
+            \begin{tikzpicture}[remember picture,baseline=(E2.base)]
+                \node (E2)
+                {
+                    \(
+                    \underbrace{
+                        \begin{pmatrix}
+                            -2 & 2 & 1  \\
+                            -1 & 2 & -2 \\
+                            3  & 0 & 2
+                        \end{pmatrix}
+                    }_{G}
+                    =
+                    \underbrace{
+                        \begin{pmatrix}
+                            1            & 0              & 0 \\
+                            \frac{4}{9}  & 1              & 0 \\
+                            -\frac{4}{9} & -\frac{47}{65} & 1
+                        \end{pmatrix}
+                    }_{U}
+                    \cdot
+                    \underbrace{
+                        \begin{pmatrix}
+                            -2              & 2             & 1              \\
+                            -\frac{1}{9}    & \frac{10}{9}  & -\frac{22}{9}  \\
+                            \frac{132}{165} & \frac{22}{13} & -\frac{44}{65}
+                        \end{pmatrix}
+                    }_{G^*}
+                    \)
+                };
+            \end{tikzpicture}
+        \]
+    }
+
+    \vspace{2cm}
+
+    \[
+        \begin{tikzpicture}[remember picture,baseline=(E1.base)]
+            \node (E1) {
+                \(
+                \underbrace{
+                    \begin{pmatrix}
+                        -2 & 2 & 1  \\
+                        3  & 0 & 2  \\
+                        -1 & 2 & -2
+                    \end{pmatrix}
+                }_{G}
+                =
+                \underbrace{
+                    \begin{pmatrix}
+                        1            & 0               & 0 \\
+                        -\frac{4}{9} & 1               & 0 \\
+                        0            & -\frac{47}{101} & 1
+                    \end{pmatrix}
+                }_{U}
+                \cdot
+                \underbrace{
+                    \begin{pmatrix}
+                        -2             & 2               & 1                \\
+                        \frac{19}{9}   & \frac{8}{9}     & \frac{22}{9}     \\
+                        \frac{88}{101} & \frac{154}{101} & -\frac{132}{101}
+                    \end{pmatrix}
+                }_{G^*}
+                \)
+            };
+        \end{tikzpicture}
+    \]
+
+
+
+
+    \uncover<2->
+    {
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw[->,
+                thick,
+                % change l’angle de courbure
+                shorten >=2pt,           % décale la pointe
+                shorten <=2pt,           % décale la base
+                >=Latex                  % style de la pointe
+            ]
+            (E1.north) to
+            node[midway, left] {\textbf{\textcolor{red}{Swap}}}
+            node[midway, right] {$\bg_3 \leftrightarrow \bg_2$}
+            (E2.south);
+        \end{tikzpicture}
+    }
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Example}
+    \uncover<2->
+    {
+        \[
+            \begin{tikzpicture}[remember picture,baseline=(E1.base)]
+                \node (E1)
+                {
+                    \(
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            -2 & 2 & 1  \\
+                            -1 & 2 & -2 \\
+                            3  & 0 & 2
+                        \end{pmatrix}
+                    }_{G}
+                    =
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            1            & 0              & 0 \\
+                            \frac{4}{9}  & 1              & 0 \\
+                            -\frac{4}{9} & -\frac{47}{65} & 1
+                        \end{pmatrix}
+                    }_{U}
+                    \cdot
+                    \underbrace
+                    {
+                        \begin{pmatrix}
+                            -2              & 2             & 1              \\
+                            -\frac{1}{9}    & \frac{10}{9}  & -\frac{22}{9}  \\
+                            \frac{132}{165} & \frac{22}{13} & -\frac{44}{65}
+                        \end{pmatrix}
+                    }_{G^*}
+                    \)
+                };
+            \end{tikzpicture}
+        \]
+    }
+
+
+    \vspace{2cm}
+
+    \uncover<5->
+    {
+        \[
+            \begin{tikzpicture}[remember picture,baseline=(E2.base)]
+                \node (E2)
+                {
+                    \(
+                    \underbrace{
+                        \begin{pmatrix}
+                            -2 & 2 & 1  \\
+                            -1 & 2 & -2 \\
+                            2  & 2 & 0
+                        \end{pmatrix}
+                    }_{G}
+                    =
+                    \underbrace{
+                        \begin{pmatrix}
+                            1           & 0             & 0 \\
+                            \frac{4}{9} & 1             & 0 \\
+                            0           & \frac{18}{65} & 1
+                        \end{pmatrix}
+                    }_{U}
+                    \cdot
+                    \underbrace{
+                        \begin{pmatrix}
+                            -2              & 2             & 1              \\
+                            -\frac{1}{9}    & \frac{10}{9}  & -\frac{22}{9}  \\
+                            \frac{132}{165} & \frac{22}{13} & -\frac{44}{65}
+                        \end{pmatrix}
+                    }_{G^*}
+                    \)
+                };
+            \end{tikzpicture}
+        \]
+    }
+
+    \only<3>
+    {
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw[->,
+                thick,
+                % change l’angle de courbure
+                shorten >=2pt,           % décale la pointe
+                shorten <=2pt,           % décale la base
+                >=Latex                  % style de la pointe
+            ]
+            (E1.south) to
+            node[midway, left] {\textbf{\textcolor{blue}{Size Reduction}}}
+            node[midway, right] {$\bg_3 \leftarrow \bg_3-\nint{-\frac{47}{65}}\bg_2$}
+            (E2.north);
+        \end{tikzpicture}
+    }
+    \only<4->
+    {
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw[->,
+                thick,
+                % change l’angle de courbure
+                shorten >=2pt,           % décale la pointe
+                shorten <=2pt,           % décale la base
+                >=Latex                  % style de la pointe
+            ]
+            (E1.south) to
+            node[midway, left] {\textbf{\textcolor{blue}{Size Reduction}}}
+            node[midway, right] {$\bg_3 \leftarrow \bg_3+1\bg_2$}
+            (E2.north);
+        \end{tikzpicture}
+    }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{LLL: Example of a Reduced Basis}
+
+    \pause We obtain the following LLL reduced basis:
+    \[
+        \bg_{\text{reduced}} =
+        \begin{pmatrix}
+            -2 & 2 & 1  \\
+            -1 & 2 & -2 \\
+            2  & 2 & 0
+        \end{pmatrix}
+    \]
+    \pause
+    The vector \( (2, 2, 0) \) is a shortest nonzero vector in the lattice, hence:
+
+    \[
+        \lambda_1(\LL) = 2\sqrt{2}.
+    \]
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\begin{frame}{Let's Try It in SageMath!}
+%    
+%    \centering
+%    \Huge
+%    \textbf{Pause.}\\[1em]
+%    \normalsize
+%    Let’s try out the LLL algorithm in \texttt{SageMath}\\
+%    to approximate a solution to the Shortest Vector Problem.
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{LLL Complexity}
+    \uncover<2->
+    {
+        \begin{smallalgo}{LLL}{algo:LLL_MCA}
+            \LinesNumbered
+            \DontPrintSemicolon
+            \KwIn{A basis \( B = (\b_1, \ldots, \b_n) \)}
+            \KwOut{An LLL-reduced basis \( G = (\bg_1, \ldots, \bg_n) \)}
+            \( G \leftarrow copy(B)\)\;
+            \tikz[remember picture, baseline=(gs.base)]{\node[inner sep=1pt] (gs){\( (G^*, U) \leftarrow \) Gram-Schmidt \( G \)\;};}
+
+            \tikz[remember picture] \node (whilestart) {}; \While{\( i \leq n \)}{
+                \tikz[remember picture] \node (forstart) {};\For{\( j = i-1, i-2, \ldots, 1 \)}{
+                    \tikz[remember picture, baseline=(size.base)]{
+                        \node[inner sep=1pt] (size){\( \bg_i \leftarrow \bg_i - \nint{\mu_{i,j}} \, \bg_j \), update \( (G^*, U) \)\;};}}\tikz[remember picture]\node(forend){};
+                \tikz[remember picture]\node(lovstart){};
+                \If{\( i > 1 \) \textbf{and} \( \|\bg_{i-1}^*\|^2 > 2 \|\bg_i^*\|^2 \)}{
+                    \tikz[remember picture, baseline=(swap.base)]{\node[inner sep=1pt] (swap){Swap \( \bg_{i-1} \) and \( \bg_i \), update \((G^*, U)\)\;}; }
+                    \( i \leftarrow i - 1 \)}
+                \Else{\( i \leftarrow i + 1 \)\;} \tikz[remember picture] \node (lovend) {};}\KwRet{\( G \)}
+        \end{smallalgo}
+    }
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \visible<3->
+        {
+            \node[draw=green, thick, rounded corners, fit=(gs), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0cm]gs.east) {\textbf{\textcolor{green}{ \( \OO(n^3) \)}}};
+        }
+
+        \visible<4->
+        {
+            \node[draw=blue, thick, rounded corners, fit=(size), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0cm]size.east) {\textbf{\textcolor{blue}{\( \OO(n) \)}}};
+        }
+
+        \visible<5->
+        {
+            \coordinate (A) at ($(forstart) + (0.1cm, 0cm)$);
+            \coordinate (B) at ($(forend) + (7.3cm, +0.5cm)$);
+            \node[draw=blue, thick, rounded corners, minimum height=0.5cm, inner sep=6pt, fit=(A)(B)] {};
+            \node[anchor=west, text=blue, font=\bfseries] at ($(B) + (0.2cm, 0.3cm)$) {\( \OO(n^2) \)};
+        }
+
+        \visible<6->
+        {
+            \node[draw=red, thick, rounded corners, fit=(swap), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0cm]swap.east) {\textbf{\textcolor{red}{\( \OO(n) \)}}};
+        }
+
+        \visible<7->
+        {
+            \coordinate (A) at ($(lovstart) + (-0.3cm, 0cm)$);
+            \coordinate (B) at ($(lovstart) + (6.9cm, -2.5cm)$);
+            \node[draw=red, thick, rounded corners, minimum height=0.5cm, inner sep=6pt, fit=(A)(B)] {};
+            \node[anchor=west, text=red, font=\bfseries] at ($(B) + (0.2cm, 0cm)$) {\( \OO(n) \)};
+        }
+
+        \visible<8->
+        {
+            \coordinate (A) at ($(whilestart) + (+0.4cm, 0cm)$);
+            \coordinate (B) at ($(whilestart) + (2.5cm, -0.1cm)$);
+            \node[draw=purple, thick, rounded corners, minimum height=0.5cm, inner sep=6pt, fit=(A)(B)] {};
+            \node[anchor=west, text=purple, font=\bfseries] at ($(B) + (0.2cm, 0.1cm)$) {How much?};
+        }
+    \end{tikzpicture}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Correctness}
+
+    \vspace{0.5em}
+
+    \textbf{Key idea:}
+    Clearly, if the algorithm \( \LLL \) \textbf{terminates}, the returned basis is by construction \( \LLL \)-reduced.
+
+    \vspace{1em}
+
+    \textit{Therefore, it remains \textbf{to prove} that \( \LLL \) \textbf{always terminates}.}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{How can we prove the termination of the algorithm?}
+
+    \begin{textblock*}{12cm}(0.5cm,2cm)
+        \only<1>{\includegraphics[width=1\textwidth]{images/1.png}}
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,2cm)
+        \only<2>{\includegraphics[width=1\textwidth]{images/2.png}}
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,2cm)
+        \only<3>{\includegraphics[width=1\textwidth]{images/3.png}}
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,2cm)
+        \only<4>{\includegraphics[width=1\textwidth]{images/4.png}}
+    \end{textblock*}
+
+    \begin{textblock*}{12cm}(0.5cm,2cm)
+        \only<5>{\includegraphics[width=1\textwidth]{images/5.png}}
+    \end{textblock*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{How can we prove the termination of the algorithm?}
+    \pause
+    Let
+    \(
+    \bg_k =
+    \begin{pmatrix}
+        \bg_1  \\
+        \bg_2  \\
+        \vdots \\
+        \bg_n
+    \end{pmatrix}
+    \).
+    \pause
+    We define
+    \(
+    d_k := \det(\bg_k \cdot \bg_k^t)
+    \). \pause
+
+    \( \rightarrow \) will be used to control the progress of the algorithm.
+    \pause
+
+    We have \pause
+    \[
+        \displaystyle d_k \pause = \det\left(\bg_k\bg_k^t\right)\pause=\det\left(U_k \bg_k^* (\bg_k^*)^t U_k^t\right)\pause = \det\left(\bg_k^* (\bg_k^*)^t\right)\pause = \prod_{1 \leq l \leq k} \| \mathbf{g}_l^* \|^2
+    \]
+    \pause If we \textbf{swap} \( \bg_i \) and \( \bg_{i-1}\) :
+
+    \( \| \mathbf{d}_{i-1}^*\| \) decrease by a \( \frac{3}{4}\) factor, so \( \mathbf{d_{i-1}}\) decrease by a \( \frac{3}{4}\) factor.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{How can we prove the termination of the algorithm?}
+    \pause
+    We define
+    \(
+    \displaystyle \Z \ni D := \prod_{k=1}^{n-1} d_k > 1
+    \)
+
+    \pause \( \rightarrow \) After each swap, \( D \) decrease by a \( \frac{3}{4} \) factor.
+
+
+    \pause Let \( D_0 \) be the value of \( D \) a the start of \( \LLL \), we have
+    \[
+        \displaystyle D_0 =\pause
+        \prod_{k=1}^{n-1} d_k = \pause
+        \prod_{k=1}^{n-1} \prod_{1 \leq l \leq k} \| \bg_l^* \|^2 = \pause
+        \prod_{k=1}^{n-1} \| \bg_k^* \|^{2(n-k)}\pause
+    \]
+    \[
+        \leq \prod_{k=1}^{n-1} \| \bg_k \|^{2(n-k)} \pause\leq
+        \prod_{k=1}^{n-1} \left(\max_{1 \leq i \leq n} \|\bg_i\| \right)^{2(n-k)}
+        \pause\leq \left(\max_{1 \leq i \leq n} \|\bg_i\| \right)^{n(n-1)}
+    \]
+
+
+    \pause\textbf{Termination proof}
+    \[
+        \pause \displaystyle 1 \leq \underbrace{\cdots}_{ \displaystyle \OO \left( \log \left(\max_{1 \leq i \leq n} \|\bg_i\| \right) \right) \text{ steps }} \leq \frac{4}{3} D_1 \leq D_0 \leq \left(\max_{1 \leq i \leq n} \|\bg_i\| \right)^{n(n-1)}
+    \]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{LLL Complexity}
+    \uncover<2->
+    {
+        \begin{smallalgo}{LLL}{algo:LLL_MCA}
+            \LinesNumbered
+            \DontPrintSemicolon
+            \KwIn{A basis \( B = (\b_1, \ldots, \b_n) \)}
+            \KwOut{An LLL-reduced basis \( G = (\bg_1, \ldots, \bg_n) \)}
+
+            \( G \leftarrow copy(B)\)
+
+
+            \tikz[remember picture, baseline=(gs.base)]
+            {
+                \node[inner sep=1pt] (gs)
+                {
+                    \( (G^*, U) \leftarrow \) Gram-Schmidt \( G \)\;
+                };
+            }
+
+            \tikz[remember picture] \node (whilestart) {};
+            \While{\( i \leq n \)}{
+                \tikz[remember picture] \node (forstart) {};
+                \For{\( j = i-1, i-2, \ldots, 1 \)}{
+                    \tikz[remember picture, baseline=(size.base)]
+                    {
+                        \node[inner sep=1pt] (size)
+                        {
+                            \( \bg_i \leftarrow \bg_i - \nint{\mu_{i,j}} \, \bg_j \), update \( (G^*, U) \)\;
+                        };
+                    }
+                }
+                \tikz[remember picture]\node(forend){};
+                \tikz[remember picture]\node(lovstart){};
+                \If{
+                    \( i > 1 \) \textbf{and} \( \|\bg_{i-1}^*\|^2 > 2 \|\bg_i^*\|^2 \)
+                }
+                {
+                    \tikz[remember picture, baseline=(swap.base)]
+                    {
+                        \node[inner sep=1pt] (swap)
+                        {
+                            Swap \( \bg_{i-1} \) and \( \bg_i \), update \((G^*, U)\)\;
+                        };
+                    }
+                    \( i \leftarrow i - 1 \)\;
+                }
+                \Else{
+                    \( i \leftarrow i + 1 \)\;
+                }
+                \tikz[remember picture] \node (lovend) {};
+            }
+            \KwRet{\( G \)}
+        \end{smallalgo}
+    }
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \visible<3->
+        {
+            \node[draw=green, thick, rounded corners, fit=(gs), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0cm]gs.east) {\textbf{\textcolor{green}{ \( \OO(n^3) \)}}};
+        }
+
+        \visible<4->
+        {
+            \node[draw=blue, thick, rounded corners, fit=(size), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0cm]size.east) {\textbf{\textcolor{blue}{\( \OO(n) \)}}};
+        }
+
+        \visible<5->
+        {
+            \coordinate (A) at ($(forstart) + (0.1cm, 0cm)$);
+            \coordinate (B) at ($(forend) + (7.3cm, +0.5cm)$);
+            \node[draw=blue, thick, rounded corners, minimum height=0.5cm, inner sep=6pt, fit=(A)(B)] {};
+            \node[anchor=west, text=blue, font=\bfseries] at ($(B) + (0.2cm, 0.3cm)$) {\( \OO(n^2) \)};
+        }
+
+        \visible<6->
+        {
+            \node[draw=red, thick, rounded corners, fit=(swap), inner sep=0pt] {};
+            \node[anchor=west] at ([xshift=0cm]swap.east) {\textbf{\textcolor{red}{\( \OO(n) \)}}};
+        }
+
+        \visible<7->
+        {
+            \coordinate (A) at ($(lovstart) + (-0.3cm, 0cm)$);
+            \coordinate (B) at ($(lovstart) + (6.9cm, -2.5cm)$);
+            \node[draw=red, thick, rounded corners, minimum height=0.5cm, inner sep=6pt, fit=(A)(B)] {};
+            \node[anchor=west, text=red, font=\bfseries] at ($(B) + (0.2cm, 0cm)$) {\( \OO(n) \)};
+        }
+
+        \visible<8->
+        {
+            \coordinate (A) at ($(whilestart) + (+0.4cm, 0cm)$);
+            \coordinate (B) at ($(whilestart) + (2.5cm, -0.1cm)$);
+            \node[draw=purple, thick, rounded corners, minimum height=0.5cm, inner sep=6pt, fit=(A)(B)] {};
+            \node[anchor=west, text=purple, font=\bfseries] at ($(B) + (0.2cm, 0.1cm)$) {\( \OO(n^2 log(A)) \)};
+        }
+    \end{tikzpicture}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Theorem: Complexity of BasisReduction}
+    \pause \textbf{Theorem.}
+
+    \pause \( \bullet ~~ \LLL \) uses \( \displaystyle \OO \left(n^2 \log \left(\max_{1 \leq i \leq n} \|\b_i\| \right)\right) \) loop iterations.
+
+    \pause \( \bullet ~~ \LLL \) uses \( \displaystyle \OO \left(n^2 \right) \) arithmetic operations over rationals per iteration.
+
+    \pause \( \bullet ~~ U \) represented with rationals of bit-lengths \( \displaystyle \OO \left(n \log \left(  \max_{1 \leq i \leq n} \|\b_i\| \right) \right) \)
+
+    \pause \( \Rightarrow \LLL \) uses \( \displaystyle \widetilde{\OO}\left( n^5 \log^2 \left(  \max_{1 \leq i \leq n} \|\b_i\| \right) \right) \) bit operations.
+
+    \vspace{1cm}
+    \pause \textbf{Theorem.}
+
+    \pause $\rightarrow$ \( \LLL \) \textbf{compute} a reduced basis in \textbf{polynomial time}.
+
+    \pause $\rightarrow$ \( \LLL \) \textbf{solve} \( 2^{\OO(n)}- \SVP \) in \textbf{polynomial time}.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[c]
+    \centering
+    \Huge
+    \textbf{Thank you for your attention!}
+
+    \vspace{2em}
+    \LARGE
+    Questions?
+\end{frame}
+\end{document}
