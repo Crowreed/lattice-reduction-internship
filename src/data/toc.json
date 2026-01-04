@@ -1,0 +1,179 @@
+[
+  {
+    "title": "Introduction",
+    "type": "chapter",
+    "isNumbered": false,
+    "path": "/report/0-introduction/",
+    "children": []
+  },
+  {
+    "title": "Réseaux euclidiens",
+    "type": "chapter",
+    "isNumbered": true,
+    "path": "/report/1-euclidean-lattices/",
+    "children": [
+      {
+        "title": "Réseaux euclidiens : Définitions et exemples",
+        "path": "/report/1-euclidean-lattices/euclidean-lattices-definitions.html"
+      },
+      {
+        "title": "Réseaux définis par des relations plutôt que par des générateurs",
+        "path": "/report/1-euclidean-lattices/lattices-relations-vs-generators.html"
+      },
+      {
+        "title": "Quelques problèmes algorithmiques liés aux réseaux euclidiens",
+        "path": "/report/1-euclidean-lattices/euclidean-algorithmic-problems.html"
+      }
+    ]
+  },
+  {
+    "title": "Réduction de réseaux euclidiens",
+    "type": "chapter",
+    "isNumbered": true,
+    "path": "/report/2-euclidean-lattice-reduction/",
+    "children": [
+      {
+        "title": "La base réduite",
+        "path": "/report/2-euclidean-lattice-reduction/reduced-basis.html"
+      },
+      {
+        "title": "Fonctionnement et exemple",
+        "path": "/report/2-euclidean-lattice-reduction/operation-and-example-reduced-basis.html"
+      }
+    ]
+  },
+  {
+    "title": "Correction, terminaison et complexité de LLL",
+    "type": "chapter",
+    "isNumbered": true,
+    "path": "/report/3-lll-correction-termination-complexity/",
+    "children": [
+      {
+        "title": "Terminaison",
+        "path": "/report/3-lll-correction-termination-complexity/lll-termination.html"
+      },
+      {
+        "title": "Correction et complexité",
+        "path": "/report/3-lll-correction-termination-complexity/lll-correction-complexity.html"
+      }
+    ]
+  },
+  {
+    "title": "État de l'art sur la réduction de réseaux euclidiens",
+    "type": "chapter",
+    "isNumbered": false,
+    "path": "/report/4-state-of-the-art-lattice-reduction/",
+    "children": []
+  },
+  {
+    "title": "Réseaux polynomiaux",
+    "type": "chapter",
+    "isNumbered": true,
+    "path": "/report/5-polynomial-lattices/",
+    "children": [
+      {
+        "title": "Définitions et exemples",
+        "path": "/report/5-polynomial-lattices/polynomial-lattices-definitions-examples.html"
+      },
+      {
+        "title": "Notion de degré en ligne",
+        "path": "/report/5-polynomial-lattices/notion-row-degree.html"
+      }
+    ]
+  },
+  {
+    "title": "Réduction de réseaux polynomiaux",
+    "type": "chapter",
+    "isNumbered": true,
+    "path": "/report/6-polynomial-repolattice-reductionrt/",
+    "children": [
+      {
+        "title": "Généralités et notion de base d’ordre",
+        "path": "/report/6-polynomial-lattice-reduction/generalities-order-basis-notion.html"
+      },
+      {
+        "title": "Algorithmes de calculs de base d’ordre",
+        "path": "/report/6-polynomial-lattice-reduction/algorithms-computing-order-basis.html"
+      }
+    ]
+  },
+  {
+    "title": "Adaptation de la réduction de réseaux polynomiaux au cas des réseaux euclidiens",
+    "type": "chapter",
+    "isNumbered": true,
+    "path": "/report/7-adapting-polynomial-reduction-to-euclidean/",
+    "children": [
+      {
+        "title": "Fonction potentielle et bornes",
+        "path": "/report/7-adapting-polynomial-reduction-to-euclidean/potential-function-and-bounds.html"
+      },
+      {
+        "title": "Vers une réduction LLL adaptée aux réseaux d’approximation",
+        "path": "/report/7-adapting-polynomial-reduction-to-euclidean/lll-reduction-for-approximation-lattices.html"
+      },
+      {
+        "title": "Comprendre le rôle du shift dans le cas euclidien",
+        "path": "/report/7-adapting-polynomial-reduction-to-euclidean/role-of-shift-in-euclidean-case.html"
+      }
+    ]
+  },
+  {
+    "title": "Conclusion",
+    "type": "chapter",
+    "isNumbered": false,
+    "path": "/report/8-conclusion/",
+    "children": []
+  },
+  {
+    "title": "Détails de preuves de LLL",
+    "type": "appendix",
+    "isNumbered": true,
+    "path": "/report/9-lll-proof-details/",
+    "children": [
+      {
+        "title": "Terminaison et complexité",
+        "path": "/report/9-lll-proof-details/lll-proof-termination-complexity.html"
+      }
+    ]
+  },
+  {
+    "title": "Anneaux : Généralités",
+    "type": "appendix",
+    "isNumbered": true,
+    "path": "/report/10-rings-generalities/",
+    "children": [
+      {
+        "title": "Anneaux de polynômes",
+        "path": "/report/10-rings-generalities/polynomial-rings.html"
+      }
+    ]
+  },
+  {
+    "title": "Modules : Généralités",
+    "type": "appendix",
+    "isNumbered": true,
+    "path": "/report/11-modules-generalities/",
+    "children": [
+      {
+        "title": "Modules sur un anneau principal",
+        "path": "/report/11-modules-generalities/modules-over-pid.html"
+      }
+    ]
+  },
+  {
+    "title": "Rappels d’algèbre linéaire",
+    "type": "appendix",
+    "isNumbered": true,
+    "path": "/report/12-linear-algebra-review/",
+    "children": [
+      {
+        "title": "Orthogonalisation de Gram–Schmidt",
+        "path": "/report/12-linear-algebra-review/gram-schmidt-orthogonalization.html"
+      },
+      {
+        "title": "Matrice de Gram",
+        "path": "/report/12-linear-algebra-review/gram-matrix.html"
+      }
+    ]
+  }
+]
