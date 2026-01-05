@@ -57,7 +57,7 @@ export async function loadTableOfContents() {
           const subStyle = isSubActive ? "background-color: #f7f6f7;" : "";
           return `
                 <li style="${subStyle}">
-                    <a href="${sub.path}" target="_self" title="${
+                    <a href="${APP_ROOT}${sub.path}" target="_self" title="${
             sub.title
           }" rel="noopener referrer">
                         <span class="num">${++i}</span>
@@ -70,7 +70,7 @@ export async function loadTableOfContents() {
       return `
             <li>
                 <div class="chapter" style="${activeStyle}">
-                    <a href="${chap.path}" title="${chap.title}" rel="noopener referrer">
+                    <a href="${APP_ROOT}${chap.path}" title="${chap.title}" rel="noopener referrer">
                         <div class="num">${numLabel}</div>
                         <h3>${chap.title}</h3>
                     </a>

@@ -24,14 +24,14 @@ export async function loadFooter() {
   tocData.forEach((chapter) => {
     list.push({
       title: chapter.title,
-      path: chapter.path,
+      path: `${APP_ROOT}${chapter.path}`,
     });
 
     if (chapter.children) {
       chapter.children.forEach((subchapter) => {
         list.push({
           title: subchapter.title,
-          path: subchapter.path,
+          path: `${APP_ROOT}${subchapter.path}`,
         });
       });
     }
