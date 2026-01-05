@@ -1,5 +1,7 @@
+import { APP_ROOT } from "../../main.js";
+
 async function fetchProject() {
-  const paths = ["/src/data/project.json"];
+  const paths = [`${APP_ROOT}src/data/project.json`];
 
   for (const path of paths) {
     try {
