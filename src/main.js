@@ -13,3 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setupKatex();
   loadFooter();
 });
+
+// On détecte si on est en local ou sur GitHub Pages
+const isProduction = window.location.hostname.includes("github.io");
+
+// Si Prod : on ajoute le nom du repo. Si Local : on reste à la racine.
+export const APP_ROOT = isProduction ? "/lattice-reduction-internship/" : "/";
