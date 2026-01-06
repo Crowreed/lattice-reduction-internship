@@ -5,12 +5,15 @@ import { makeArticle } from "./components/Course/Course.js";
 import { loadFooter } from "./components/Footer/footer.js";
 import { setupKatex } from "./katex-config.js";
 
+import { makeAlgorithm } from "./components/Algorithm/Algorithm.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   loadTableOfContents();
   createProject();
   createNews();
   makeArticle();
   setupKatex();
+  makeAlgorithm();
   loadFooter();
 });
 
