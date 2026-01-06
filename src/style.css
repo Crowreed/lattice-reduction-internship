@@ -3,10 +3,11 @@ html {
 }
 
 body {
-  background-color: red;
   background-image: url(seamless_lattice.png);
   background-size: cover;
   background-size: 500px;
+
+  font-family: InterVariable;
 
   display: flex;
   flex-direction: column;
