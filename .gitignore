@@ -14,3 +14,10 @@
 *.snm
 *.synctex.gz
 *.bbl-SAVE-ERROR
+*.sobj
+outputs
+results
+references
+.vscode/
+*.txt
+internship
