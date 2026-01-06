@@ -5,6 +5,7 @@
 @import "./components/Project/Project.css";
 @import "./components/Course/Course.css";
 @import "./components/Footer/footer.css";
+@import "./components/Algorithm/Algorithm.css";
 @import "root.css";
 @import "reset.css";
 @import "header.css";
