@@ -8,6 +8,9 @@
 @import "root.css";
 @import "reset.css";
 @import "header.css";
+@import "table.css";
+@import "footnotes.css";
+@import "figure.css";
 
 :root {
   /* Par défaut, on utilise la version classique (sécurité) */
